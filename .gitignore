@@ -1,0 +1,11 @@
+node_modules/
+.cache/
+.npm/
+.bash_history
+.bashrc
+.profile
+.ssh/
+.config/
+.local/
+.claude/
+.claude.json

@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "dev": "npx serve . -l 3000"
+  },
+  "dependencies": {
+    "motion": "^12.38.0"
+  }
+}
