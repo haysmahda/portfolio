@@ -3,46 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>John Doe — Full Stack Developer</title>
-  <meta name="description" content="Full Stack Developer crafting beautiful, performant digital experiences.">
+  <title>Your Name — Graphic Designer & 3D Visualizer</title>
+  <meta name="description" content="Graphic Designer specializing in 2D Key Visual adaptation and 3D event visualization using Adobe Illustrator and SketchUp.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* =================== DESIGN TOKENS =================== */
     :root {
-      --bg-primary: #030712;
-      --bg-secondary: #0F172A;
-      --bg-card: #111827;
-      --bg-card-hover: #1E293B;
-      --border: #1E293B;
-      --border-glow: rgba(99, 102, 241, 0.35);
-      --text-primary: #F1F5F9;
-      --text-secondary: #94A3B8;
-      --text-muted: #64748B;
-      --accent: #6366F1;
-      --accent-light: #818CF8;
-      --accent-pink: #EC4899;
-      --gradient: linear-gradient(135deg, #6366F1, #EC4899);
-      --gradient-text: linear-gradient(135deg, #818CF8, #F472B6);
-      --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
-      --anim: 300ms;
+      --bg-primary:    #0D0B09;
+      --bg-secondary:  #181410;
+      --bg-card:       #1E1A15;
+      --bg-card-hover: #252018;
+      --border:        #2E2820;
+      --border-glow:   rgba(217, 119, 6, 0.3);
+      --text-primary:  #FAF8F5;
+      --text-secondary:#B5AFA8;
+      --text-muted:    #7A7268;
+      --gold:          #D97706;
+      --gold-light:    #FBBF24;
+      --orange:        #F97316;
+      --gradient:      linear-gradient(135deg, #D97706, #F97316);
+      --gradient-text: linear-gradient(135deg, #FBBF24, #FB923C);
+      --shadow-glow:   0 0 40px rgba(217, 119, 6, 0.12);
+      --anim:          280ms;
     }
 
     /* =================== RESET =================== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
 
     body {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
       line-height: 1.6;
@@ -52,790 +48,567 @@
     /* =================== UTILS =================== */
     .gradient-text {
       background: var(--gradient-text);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-
     .section-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent-light);
-      display: block;
-      margin-bottom: 0.75rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold-light);
+      display: block; margin-bottom: 0.75rem;
     }
-
     .section-title {
-      font-family: 'Archivo', sans-serif;
+      font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1rem;
+      font-weight: 800; line-height: 1.15; margin-bottom: 1rem;
     }
-
     .section-description {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      max-width: 580px;
-      line-height: 1.75;
+      font-size: 1.05rem; color: var(--text-secondary);
+      max-width: 580px; line-height: 1.75;
     }
-
     .section-divider {
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--border), transparent);
     }
 
     /* =================== SCROLL REVEAL =================== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal       { opacity:0; transform:translateY(28px);  transition:opacity .65s ease, transform .65s ease; }
+    .reveal-left  { opacity:0; transform:translateX(-28px); transition:opacity .65s ease, transform .65s ease; }
+    .reveal-right { opacity:0; transform:translateX(28px);  transition:opacity .65s ease, transform .65s ease; }
+    .reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity:1; transform:none; }
 
     /* =================== BUTTONS =================== */
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--gradient);
-      color: #fff;
-      padding: 0.875rem 2rem;
-      border-radius: 0.75rem;
-      font-weight: 700; font-size: 1rem;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(99,102,241,0.35);
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:var(--gradient); color:#fff;
+      padding:.875rem 2rem; border-radius:.75rem;
+      font-weight:700; font-size:1rem;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:opacity .2s, transform .2s, box-shadow .2s;
+      box-shadow:0 4px 20px rgba(217,119,6,.3);
     }
-    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.5); }
+    .btn-primary:hover { opacity:.9; transform:translateY(-2px); box-shadow:0 8px 30px rgba(217,119,6,.45); }
 
     .btn-secondary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: transparent; color: var(--text-primary);
-      padding: 0.875rem 2rem;
-      border-radius: 0.75rem;
-      font-weight: 600; font-size: 1rem;
-      text-decoration: none;
-      border: 1px solid var(--border); cursor: pointer;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:transparent; color:var(--text-primary);
+      padding:.875rem 2rem; border-radius:.75rem;
+      font-weight:600; font-size:1rem;
+      text-decoration:none; border:1px solid var(--border); cursor:pointer;
+      transition:background .2s, border-color .2s, transform .2s;
     }
-    .btn-secondary:hover { background: var(--bg-secondary); border-color: var(--accent); transform: translateY(-2px); }
+    .btn-secondary:hover { background:var(--bg-secondary); border-color:var(--gold); transform:translateY(-2px); }
 
     /* =================== NAVBAR =================== */
     .navbar {
-      position: fixed; top: 1rem; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 3rem); max-width: 1100px;
-      z-index: 50;
-      background: rgba(3,7,18,0.55);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 0.875rem 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background var(--anim), box-shadow var(--anim), border-color var(--anim);
+      position:fixed; top:1rem; left:50%; transform:translateX(-50%);
+      width:calc(100% - 3rem); max-width:1100px; z-index:50;
+      background:rgba(13,11,9,.55);
+      backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      border:1px solid var(--border); border-radius:1rem;
+      padding:.875rem 1.5rem;
+      display:flex; align-items:center; justify-content:space-between;
+      transition:background var(--anim), box-shadow var(--anim), border-color var(--anim);
     }
-    .navbar.scrolled {
-      background: rgba(3,7,18,0.9);
-      box-shadow: var(--shadow-glow);
-      border-color: var(--border-glow);
-    }
+    .navbar.scrolled { background:rgba(13,11,9,.92); box-shadow:var(--shadow-glow); border-color:var(--border-glow); }
 
     .nav-logo {
-      font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 1.25rem;
-      text-decoration: none; color: var(--text-primary);
+      font-family:'Playfair Display',serif; font-weight:800; font-size:1.25rem;
+      text-decoration:none; color:var(--text-primary);
     }
-    .nav-logo span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-logo span { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
-    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
     .nav-links a {
-      font-size: 0.875rem; font-weight: 500; color: var(--text-secondary);
-      text-decoration: none; cursor: pointer;
-      transition: color var(--anim);
+      font-size:.875rem; font-weight:500; color:var(--text-secondary);
+      text-decoration:none; cursor:pointer; transition:color var(--anim);
     }
-    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover { color:var(--text-primary); }
 
     .nav-cta {
-      background: var(--gradient) !important;
-      color: #fff !important;
-      padding: 0.5rem 1.25rem !important;
-      border-radius: 0.5rem !important;
-      font-weight: 600 !important;
-      transition: opacity 0.2s, transform 0.2s !important;
+      background:var(--gradient) !important; color:#fff !important;
+      padding:.5rem 1.25rem !important; border-radius:.5rem !important;
+      font-weight:600 !important;
+      transition:opacity .2s, transform .2s !important;
     }
-    .nav-cta:hover { opacity: 0.9 !important; transform: translateY(-1px) !important; color: #fff !important; }
+    .nav-cta:hover { opacity:.9 !important; transform:translateY(-1px) !important; }
 
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      cursor: pointer; padding: 4px;
-      background: none; border: none;
-    }
-    .hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--text-primary); border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--text-primary); border-radius:2px; transition:transform .3s, opacity .3s; }
+    .hamburger.active span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity:0; }
+    .hamburger.active span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
     .mobile-menu {
-      display: none; position: fixed;
-      top: 5rem; left: 1.5rem; right: 1.5rem;
-      background: rgba(15,23,42,0.97);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
-      border-radius: 1rem; padding: 1.5rem;
-      z-index: 49; flex-direction: column; gap: 0;
+      display:none; position:fixed; top:5rem; left:1.5rem; right:1.5rem;
+      background:rgba(24,20,16,.97);
+      backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      border:1px solid var(--border); border-radius:1rem; padding:1.5rem;
+      z-index:49; flex-direction:column;
     }
-    .mobile-menu.active { display: flex; }
+    .mobile-menu.active { display:flex; }
     .mobile-menu a {
-      font-size: 1rem; font-weight: 500; color: var(--text-secondary);
-      text-decoration: none; padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
-      transition: color var(--anim); cursor: pointer;
+      font-size:1rem; font-weight:500; color:var(--text-secondary);
+      text-decoration:none; padding:.75rem 0;
+      border-bottom:1px solid var(--border); transition:color var(--anim); cursor:pointer;
     }
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu a:hover { color: var(--text-primary); }
+    .mobile-menu a:last-child { border-bottom:none; }
+    .mobile-menu a:hover { color:var(--text-primary); }
 
     /* =================== HERO =================== */
     #hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      position: relative; overflow: hidden;
-      padding: 6rem 0 4rem;
+      min-height:100vh; display:flex; align-items:center;
+      position:relative; overflow:hidden; padding:6rem 0 4rem;
     }
-
-    .hero-bg { position: absolute; inset: 0; z-index: 0; }
-
+    .hero-bg { position:absolute; inset:0; z-index:0; }
     .hero-orb {
-      position: absolute; border-radius: 50%;
-      filter: blur(90px); opacity: 0.13;
-      animation: floatOrb 9s ease-in-out infinite;
+      position:absolute; border-radius:50%; filter:blur(90px); opacity:.1;
+      animation:floatOrb 10s ease-in-out infinite;
     }
-    .hero-orb-1 { width: 520px; height: 520px; background: var(--accent); top: -8%; right: -4%; }
-    .hero-orb-2 { width: 420px; height: 420px; background: var(--accent-pink); bottom: 8%; left: -4%; animation-delay: -4.5s; }
-
+    .hero-orb-1 { width:550px; height:550px; background:var(--gold);    top:-10%; right:-5%; }
+    .hero-orb-2 { width:400px; height:400px; background:var(--orange);  bottom:5%; left:-5%; animation-delay:-5s; }
     @keyframes floatOrb {
-      0%,100% { transform: translate(0,0) scale(1); }
-      33% { transform: translate(18px,-18px) scale(1.06); }
-      66% { transform: translate(-12px,14px) scale(0.95); }
+      0%,100% { transform:translate(0,0) scale(1); }
+      33%      { transform:translate(20px,-20px) scale(1.06); }
+      66%      { transform:translate(-12px,15px) scale(.95); }
     }
-
     .hero-grid {
-      position: absolute; inset: 0;
+      position:absolute; inset:0;
       background-image:
-        linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-      mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+        linear-gradient(rgba(217,119,6,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(217,119,6,.04) 1px, transparent 1px);
+      background-size:55px 55px;
+      mask-image:radial-gradient(ellipse at center, black 40%, transparent 80%);
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 780px; }
+    .hero-content { position:relative; z-index:1; max-width:780px; }
 
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(99,102,241,0.1);
-      border: 1px solid rgba(99,102,241,0.3);
-      color: var(--accent-light);
-      padding: 0.375rem 1rem; border-radius: 2rem;
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
-      margin-bottom: 2rem;
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:rgba(217,119,6,.1); border:1px solid rgba(217,119,6,.3);
+      color:var(--gold-light); padding:.375rem 1rem; border-radius:2rem;
+      font-size:.8rem; font-weight:600; letter-spacing:.05em; margin-bottom:2rem;
     }
-
     .hero-badge-dot {
-      width: 7px; height: 7px;
-      background: #22C55E; border-radius: 50%;
-      box-shadow: 0 0 8px #22C55E;
-      animation: pulse 2s ease-in-out infinite;
+      width:7px; height:7px; background:#22C55E; border-radius:50%;
+      box-shadow:0 0 8px #22C55E; animation:pulse 2s ease-in-out infinite;
     }
-
-    @keyframes pulse {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(1.4); }
-    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.6;transform:scale(1.4);} }
 
     .hero-title {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(2.75rem, 7vw, 5.5rem);
-      font-weight: 900; line-height: 1.05;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.75rem, 7vw, 5.5rem);
+      font-weight:900; line-height:1.05; margin-bottom:1.5rem;
+      letter-spacing:-.02em;
     }
+    .hero-title em { font-style:italic; }
 
-    .typing-text {
-      background: var(--gradient-text);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .cursor {
-      display: inline-block;
-      background: var(--gradient-text);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: blink 1s step-end infinite;
-      margin-left: 1px;
-    }
-    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+    .typing-text { background:var(--gradient-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .cursor { display:inline-block; background:var(--gradient-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:blink 1s step-end infinite; margin-left:1px; }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
 
-    .hero-description {
-      font-size: 1.15rem; color: var(--text-secondary);
-      max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem;
-    }
+    .hero-description { font-size:1.1rem; color:var(--text-secondary); max-width:560px; line-height:1.8; margin-bottom:2.5rem; }
 
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 3.5rem; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:3.5rem; }
 
-    .hero-socials { display: flex; gap: 0.75rem; align-items: center; }
+    .hero-socials { display:flex; gap:.75rem; }
     .hero-socials a {
-      display: flex; align-items: center; justify-content: center;
-      width: 42px; height: 42px;
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      border-radius: 0.625rem; color: var(--text-secondary);
-      text-decoration: none; cursor: pointer;
-      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+      display:flex; align-items:center; justify-content:center;
+      width:42px; height:42px;
+      background:var(--bg-secondary); border:1px solid var(--border);
+      border-radius:.625rem; color:var(--text-secondary);
+      text-decoration:none; cursor:pointer;
+      transition:color .2s, border-color .2s, background .2s, transform .2s;
     }
-    .hero-socials a:hover {
-      color: var(--accent-light); border-color: var(--accent);
-      background: rgba(99,102,241,0.1); transform: translateY(-2px);
-    }
+    .hero-socials a:hover { color:var(--gold-light); border-color:var(--gold); background:rgba(217,119,6,.1); transform:translateY(-2px); }
 
     .hero-stats {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 1.5rem; margin-top: 5rem;
-      padding-top: 3rem; border-top: 1px solid var(--border);
+      display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;
+      margin-top:5rem; padding-top:3rem; border-top:1px solid var(--border);
     }
     .hero-stat-number {
-      font-family: 'Archivo', sans-serif; font-size: 2.5rem; font-weight: 800;
-      background: var(--gradient-text); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; background-clip: text;
-      line-height: 1; margin-bottom: 0.3rem;
+      font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:800;
+      background:var(--gradient-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      line-height:1; margin-bottom:.3rem;
     }
-    .hero-stat-label { font-size: 0.875rem; color: var(--text-muted); }
+    .hero-stat-label { font-size:.875rem; color:var(--text-muted); }
 
     /* =================== ABOUT =================== */
-    #about { padding: 6rem 0; }
+    #about { padding:6rem 0; }
+    .about-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:5rem; align-items:center; }
 
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1.1fr;
-      gap: 5rem; align-items: center;
-    }
-
-    .about-image-wrapper { position: relative; }
-
+    .about-image-wrapper { position:relative; }
     .about-image {
-      width: 100%; aspect-ratio: 4/5;
-      border-radius: 1.5rem;
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      overflow: hidden;
+      width:100%; aspect-ratio:4/5; border-radius:1.5rem;
+      background:var(--bg-secondary); border:1px solid var(--border); overflow:hidden;
     }
-
     .about-image-placeholder {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 1rem;
+      width:100%; height:100%;
+      background:linear-gradient(135deg, #181410 0%, #252018 100%);
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem;
     }
-
     .about-avatar-ring {
-      width: 120px; height: 120px; border-radius: 50%;
-      background: var(--gradient);
-      display: flex; align-items: center; justify-content: center;
+      width:120px; height:120px; border-radius:50%;
+      background:var(--gradient);
+      display:flex; align-items:center; justify-content:center;
     }
-    .about-avatar-ring svg { width: 60px; height: 60px; fill: white; opacity: 0.9; }
-
-    .about-img-name { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 1.1rem; }
-    .about-img-role { font-size: 0.875rem; color: var(--text-muted); }
+    .about-avatar-ring svg { width:60px; height:60px; fill:white; opacity:.9; }
+    .about-img-name { font-family:'Playfair Display',serif; font-weight:700; font-size:1.1rem; }
+    .about-img-role { font-size:.875rem; color:var(--text-muted); }
 
     .about-image-glow {
-      position: absolute; bottom: -30px; left: 50%;
-      transform: translateX(-50%);
-      width: 200px; height: 200px;
-      background: var(--accent); border-radius: 50%;
-      filter: blur(60px); opacity: 0.1; z-index: -1;
+      position:absolute; bottom:-30px; left:50%; transform:translateX(-50%);
+      width:200px; height:200px; background:var(--gold); border-radius:50%;
+      filter:blur(60px); opacity:.08; z-index:-1;
     }
-
     .about-badge {
-      position: absolute; bottom: -1rem; right: -1rem;
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 1rem; padding: 1rem 1.25rem;
-      display: flex; align-items: center; gap: 0.875rem;
-      box-shadow: var(--shadow-glow);
+      position:absolute; bottom:-1rem; right:-1rem;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:1rem; padding:1rem 1.25rem;
+      display:flex; align-items:center; gap:.875rem;
+      box-shadow:var(--shadow-glow);
     }
     .about-badge-icon {
-      width: 42px; height: 42px; background: var(--gradient);
-      border-radius: 0.625rem; display: flex; align-items: center; justify-content: center;
+      width:42px; height:42px; background:var(--gradient);
+      border-radius:.625rem; display:flex; align-items:center; justify-content:center;
     }
-    .about-badge-icon svg { width: 20px; height: 20px; stroke: white; fill: none; }
-    .about-badge-num { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 1.25rem; line-height: 1; }
-    .about-badge-lbl { font-size: 0.72rem; color: var(--text-muted); }
+    .about-badge-icon svg { width:20px; height:20px; stroke:white; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .about-badge-num { font-family:'Playfair Display',serif; font-weight:800; font-size:1.25rem; line-height:1; }
+    .about-badge-lbl { font-size:.72rem; color:var(--text-muted); }
 
-    .about-text p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1.05rem; }
+    .about-text p { color:var(--text-secondary); line-height:1.8; margin-bottom:1.25rem; font-size:1.05rem; }
 
-    .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
-
-    .about-highlight { display: flex; align-items: flex-start; gap: 0.75rem; }
+    .about-highlights { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2rem; }
+    .about-highlight { display:flex; align-items:flex-start; gap:.75rem; }
     .about-hl-icon {
-      width: 32px; height: 32px; flex-shrink: 0;
-      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
-      border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;
-      margin-top: 0.1rem;
+      width:32px; height:32px; flex-shrink:0;
+      background:rgba(217,119,6,.1); border:1px solid rgba(217,119,6,.2);
+      border-radius:.5rem; display:flex; align-items:center; justify-content:center; margin-top:.1rem;
     }
-    .about-hl-icon svg { width: 15px; height: 15px; stroke: var(--accent-light); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-    .about-highlight strong { display: block; font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.15rem; }
-    .about-highlight span { font-size: 0.78rem; color: var(--text-muted); }
+    .about-hl-icon svg { width:15px; height:15px; stroke:var(--gold-light); fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+    .about-highlight strong { display:block; font-size:.875rem; font-weight:600; color:var(--text-primary); margin-bottom:.15rem; }
+    .about-highlight span { font-size:.78rem; color:var(--text-muted); }
+    .about-actions { display:flex; gap:1rem; flex-wrap:wrap; margin-top:2.5rem; }
+    .about-actions .btn-primary, .about-actions .btn-secondary { font-size:.9rem; padding:.75rem 1.75rem; }
 
-    .about-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
-    .about-actions .btn-primary { font-size: 0.9rem; padding: 0.75rem 1.75rem; }
-    .about-actions .btn-secondary { font-size: 0.9rem; padding: 0.75rem 1.75rem; }
+    /* =================== SERVICES =================== */
+    #services { padding:6rem 0; background:linear-gradient(180deg, transparent, rgba(217,119,6,.025), transparent); }
+    .services-header { text-align:center; margin-bottom:3.5rem; }
+    .services-header .section-description { margin:0 auto; }
 
-    /* =================== SKILLS =================== */
-    #skills {
-      padding: 6rem 0;
-      background: linear-gradient(180deg, transparent, rgba(99,102,241,0.03), transparent);
+    .services-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; margin-bottom:4rem; }
+
+    .service-card {
+      background:var(--bg-card); border:1px solid var(--border); border-radius:1.25rem;
+      padding:2rem; cursor:pointer; transition:all .3s;
+      display:flex; align-items:flex-start; gap:1.25rem;
+    }
+    .service-card:hover { border-color:var(--gold); background:var(--bg-card-hover); transform:translateY(-4px); box-shadow:0 16px 40px rgba(217,119,6,.1); }
+
+    .service-icon {
+      width:52px; height:52px; flex-shrink:0; border-radius:.875rem;
+      background:rgba(217,119,6,.1); border:1px solid rgba(217,119,6,.2);
+      display:flex; align-items:center; justify-content:center;
+      transition:background .3s, border-color .3s;
+    }
+    .service-card:hover .service-icon { background:var(--gradient); border-color:transparent; }
+    .service-icon svg { width:26px; height:26px; stroke:var(--gold-light); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; transition:stroke .3s; }
+    .service-card:hover .service-icon svg { stroke:white; }
+
+    .service-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; margin-bottom:.4rem; color:var(--text-primary); }
+    .service-desc { font-size:.875rem; color:var(--text-secondary); line-height:1.65; }
+    .service-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.875rem; }
+    .service-tag {
+      font-size:.68rem; font-weight:600; padding:.2rem .55rem; border-radius:.375rem;
+      background:rgba(217,119,6,.08); color:var(--gold-light); border:1px solid rgba(217,119,6,.15);
     }
 
-    .skills-header { text-align: center; margin-bottom: 3.5rem; }
-    .skills-header .section-description { margin: 0 auto; }
+    /* Tools strip */
+    .tools-strip-title { text-align:center; margin-bottom:2rem; }
+    .tools-strip-title span { font-size:.72rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--text-muted); }
+    .tools-strip { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; }
 
-    .skills-tabs {
-      display: flex; gap: 0.5rem; justify-content: center;
-      flex-wrap: wrap; margin-bottom: 3rem;
+    .tool-pill {
+      display:flex; align-items:center; gap:.625rem;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:2rem; padding:.5rem 1.25rem;
+      cursor:pointer; transition:all .25s;
     }
-
-    .skill-tab {
-      padding: 0.5rem 1.25rem; border-radius: 2rem;
-      font-size: 0.875rem; font-weight: 500; cursor: pointer;
-      border: 1px solid var(--border); background: transparent;
-      color: var(--text-secondary);
-      transition: all 0.2s;
+    .tool-pill:hover { border-color:var(--gold); background:var(--bg-card-hover); transform:translateY(-2px); }
+    .tool-abbr {
+      width:28px; height:28px; border-radius:.375rem;
+      background:rgba(217,119,6,.12); border:1px solid rgba(217,119,6,.2);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.65rem; font-weight:800; color:var(--gold-light); letter-spacing:-.02em;
     }
-    .skill-tab:hover { border-color: var(--accent); color: var(--text-primary); }
-    .skill-tab.active { background: var(--gradient); border-color: transparent; color: #fff; }
-
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(105px,1fr)); gap: 1.25rem;
-    }
-
-    .skill-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 1rem; padding: 1.25rem 0.75rem;
-      text-align: center; cursor: pointer;
-      transition: all 0.25s;
-      display: flex; flex-direction: column; align-items: center; gap: 0.625rem;
-    }
-    .skill-card:hover {
-      border-color: var(--accent); background: var(--bg-card-hover);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(99,102,241,0.15);
-    }
-    .skill-icon {
-      width: 44px; height: 44px; border-radius: 0.625rem;
-      background: var(--bg-secondary);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.8rem; font-weight: 700; color: var(--accent-light);
-      letter-spacing: -0.03em;
-    }
-    .skill-name { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); }
-    .skill-level { font-size: 0.68rem; color: var(--accent-light); font-weight: 600; }
+    .tool-name { font-size:.825rem; font-weight:500; color:var(--text-secondary); }
+    .tool-level { font-size:.68rem; color:var(--text-muted); }
 
     /* =================== PROJECTS =================== */
-    #projects { padding: 6rem 0; }
-
+    #projects { padding:6rem 0; }
     .projects-header {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem;
+      display:flex; align-items:flex-end; justify-content:space-between;
+      margin-bottom:3rem; flex-wrap:wrap; gap:1.5rem;
     }
-
-    .projects-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-
+    .projects-filters { display:flex; gap:.5rem; flex-wrap:wrap; }
     .filter-btn {
-      padding: 0.5rem 1.125rem; border-radius: 2rem;
-      font-size: 0.8rem; font-weight: 500; cursor: pointer;
-      border: 1px solid var(--border); background: transparent;
-      color: var(--text-secondary); transition: all 0.2s;
+      padding:.5rem 1.125rem; border-radius:2rem;
+      font-size:.8rem; font-weight:500; cursor:pointer;
+      border:1px solid var(--border); background:transparent;
+      color:var(--text-secondary); transition:all .2s;
     }
-    .filter-btn:hover { border-color: var(--accent); color: var(--text-primary); }
-    .filter-btn.active {
-      background: rgba(99,102,241,0.15); border-color: var(--accent);
-      color: var(--accent-light);
-    }
+    .filter-btn:hover { border-color:var(--gold); color:var(--text-primary); }
+    .filter-btn.active { background:rgba(217,119,6,.15); border-color:var(--gold); color:var(--gold-light); }
 
-    .projects-grid {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
-    }
+    .projects-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
 
     .project-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 1.25rem; overflow: hidden; cursor: pointer;
-      transition: all 0.3s;
-      display: flex; flex-direction: column;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:1.25rem; overflow:hidden; cursor:pointer;
+      transition:all .3s; display:flex; flex-direction:column;
     }
-    .project-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(99,102,241,0.15);
-    }
+    .project-card:hover { border-color:var(--gold); transform:translateY(-6px); box-shadow:0 20px 40px rgba(217,119,6,.12); }
 
-    .project-image { aspect-ratio: 16/10; position: relative; overflow: hidden; }
-    .project-image-bg {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
+    .project-image { aspect-ratio:16/10; position:relative; overflow:hidden; }
+    .project-image-bg { width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative; }
+    .project-image-label {
+      position:absolute; bottom:.75rem; left:.75rem;
+      background:rgba(0,0,0,.5); backdrop-filter:blur(8px);
+      padding:.25rem .75rem; border-radius:2rem;
+      font-size:.7rem; font-weight:600; color:rgba(255,255,255,.85);
+      letter-spacing:.06em; text-transform:uppercase;
     }
 
     .project-overlay {
-      position: absolute; inset: 0;
-      background: rgba(3,7,18,0.72);
-      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
-      opacity: 0; transition: opacity 0.3s;
+      position:absolute; inset:0;
+      background:rgba(13,11,9,.72);
+      display:flex; align-items:center; justify-content:center; gap:.75rem;
+      opacity:0; transition:opacity .3s;
     }
-    .project-card:hover .project-overlay { opacity: 1; }
+    .project-card:hover .project-overlay { opacity:1; }
 
     .proj-ov-btn {
-      display: flex; align-items: center; gap: 0.375rem;
-      padding: 0.5rem 1rem; border-radius: 0.5rem;
-      font-size: 0.8rem; font-weight: 600; cursor: pointer;
-      transition: transform 0.2s; border: none; text-decoration: none;
+      display:flex; align-items:center; gap:.375rem;
+      padding:.5rem 1rem; border-radius:.5rem;
+      font-size:.8rem; font-weight:600; cursor:pointer;
+      transition:transform .2s; border:none; text-decoration:none;
     }
-    .proj-ov-btn:hover { transform: scale(1.05); }
-    .proj-ov-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .btn-demo { background: var(--gradient); color: white; }
-    .btn-code { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2) !important; backdrop-filter: blur(8px); }
+    .proj-ov-btn:hover { transform:scale(1.05); }
+    .proj-ov-btn svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .btn-view { background:var(--gradient); color:white; }
+    .btn-detail { background:rgba(255,255,255,.1); color:white; border:1px solid rgba(255,255,255,.2) !important; backdrop-filter:blur(8px); }
 
-    .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.875rem; }
+    .project-body { padding:1.5rem; flex:1; display:flex; flex-direction:column; }
+    .project-tags { display:flex; flex-wrap:wrap; gap:.45rem; margin-bottom:.875rem; }
     .project-tag {
-      font-size: 0.68rem; font-weight: 600;
-      padding: 0.25rem 0.625rem; border-radius: 0.375rem;
-      background: rgba(99,102,241,0.1); color: var(--accent-light);
-      border: 1px solid rgba(99,102,241,0.2);
+      font-size:.68rem; font-weight:600; padding:.25rem .6rem; border-radius:.375rem;
+      background:rgba(217,119,6,.08); color:var(--gold-light); border:1px solid rgba(217,119,6,.15);
     }
-    .project-title { font-family: 'Archivo', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .project-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; flex: 1; }
-
+    .project-title { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; margin-bottom:.5rem; }
+    .project-desc { font-size:.875rem; color:var(--text-secondary); line-height:1.65; flex:1; }
     .project-footer {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+      margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);
     }
-    .project-stars {
-      display: flex; align-items: center; gap: 0.375rem;
-      font-size: 0.8rem; color: var(--text-muted);
-    }
-    .project-stars svg { width: 14px; height: 14px; fill: #F59E0B; stroke: #F59E0B; }
+    .project-type { font-size:.75rem; color:var(--text-muted); font-weight:500; }
     .project-arrow {
-      width: 28px; height: 28px;
-      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
-      border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;
-      transition: all 0.2s;
+      width:28px; height:28px;
+      background:rgba(217,119,6,.08); border:1px solid rgba(217,119,6,.2);
+      border-radius:.5rem; display:flex; align-items:center; justify-content:center;
+      transition:all .2s;
     }
-    .project-card:hover .project-arrow { background: var(--gradient); border-color: transparent; }
-    .project-arrow svg { width: 14px; height: 14px; stroke: var(--accent-light); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .project-card:hover .project-arrow svg { stroke: white; }
+    .project-card:hover .project-arrow { background:var(--gradient); border-color:transparent; }
+    .project-arrow svg { width:14px; height:14px; stroke:var(--gold-light); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .project-card:hover .project-arrow svg { stroke:white; }
 
     /* project bg gradients */
-    .pc-1 { background: linear-gradient(135deg,#1E1B4B,#312E81,#4338CA); }
-    .pc-2 { background: linear-gradient(135deg,#1E3A5F,#1E40AF,#3B82F6); }
-    .pc-3 { background: linear-gradient(135deg,#4A1942,#7C3AED,#A78BFA); }
-    .pc-4 { background: linear-gradient(135deg,#064E3B,#059669,#34D399); }
-    .pc-5 { background: linear-gradient(135deg,#7F1D1D,#DC2626,#F87171); }
-    .pc-6 { background: linear-gradient(135deg,#78350F,#D97706,#FCD34D); }
+    .pc-1 { background:linear-gradient(135deg,#1A0E00,#3D2200,#7C4A00); }
+    .pc-2 { background:linear-gradient(135deg,#0D1A10,#1A4425,#2D7A45); }
+    .pc-3 { background:linear-gradient(135deg,#1A0D1A,#3D1244,#7A2490); }
+    .pc-4 { background:linear-gradient(135deg,#0D0D1A,#1A2244,#2D4490); }
+    .pc-5 { background:linear-gradient(135deg,#1A0A00,#4D2200,#8B3A00); }
+    .pc-6 { background:linear-gradient(135deg,#1A1500,#443800,#8B7200); }
 
     /* =================== TESTIMONIALS =================== */
-    #testimonials {
-      padding: 6rem 0;
-      background: linear-gradient(180deg, transparent, rgba(236,72,153,0.03), transparent);
-    }
-    .testimonials-header { text-align: center; margin-bottom: 4rem; }
-    .testimonials-header .section-description { margin: 0 auto; }
+    #testimonials { padding:6rem 0; background:linear-gradient(180deg,transparent,rgba(249,115,22,.025),transparent); }
+    .testimonials-header { text-align:center; margin-bottom:4rem; }
+    .testimonials-header .section-description { margin:0 auto; }
 
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-
+    .testimonials-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
     .testimonial-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 1.25rem; padding: 2rem;
-      transition: all 0.3s; cursor: pointer; position: relative;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:1.25rem; padding:2rem;
+      transition:all .3s; cursor:pointer; position:relative;
     }
-    .testimonial-card:hover {
-      border-color: rgba(236,72,153,0.3); transform: translateY(-4px);
-      box-shadow: 0 16px 32px rgba(236,72,153,0.08);
-    }
+    .testimonial-card:hover { border-color:rgba(217,119,6,.3); transform:translateY(-4px); box-shadow:0 16px 32px rgba(217,119,6,.08); }
 
-    .testimonial-quote-bg {
-      position: absolute; top: 1.5rem; right: 1.5rem; opacity: 0.05;
-    }
-    .testimonial-quote-bg svg { width: 40px; height: 40px; fill: var(--text-primary); }
+    .testimonial-quote-bg { position:absolute; top:1.5rem; right:1.5rem; opacity:.05; }
+    .testimonial-quote-bg svg { width:40px; height:40px; fill:var(--text-primary); }
 
-    .testimonial-stars { display: flex; gap: 0.25rem; margin-bottom: 1.25rem; }
-    .testimonial-stars svg { width: 15px; height: 15px; fill: #F59E0B; stroke: #F59E0B; }
-
-    .testimonial-quote {
-      font-size: 0.925rem; color: var(--text-secondary);
-      line-height: 1.8; margin-bottom: 1.5rem; font-style: italic;
-    }
-
-    .testimonial-author { display: flex; align-items: center; gap: 0.875rem; }
-    .testimonial-avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.95rem; color: white; flex-shrink: 0;
-    }
-    .av-1 { background: linear-gradient(135deg,#6366F1,#8B5CF6); }
-    .av-2 { background: linear-gradient(135deg,#EC4899,#F43F5E); }
-    .av-3 { background: linear-gradient(135deg,#06B6D4,#3B82F6); }
-
-    .testimonial-name { font-weight: 600; font-size: 0.9rem; }
-    .testimonial-role { font-size: 0.78rem; color: var(--text-muted); }
+    .testimonial-stars { display:flex; gap:.25rem; margin-bottom:1.25rem; }
+    .testimonial-stars svg { width:15px; height:15px; fill:#F59E0B; stroke:#F59E0B; }
+    .testimonial-quote { font-size:.925rem; color:var(--text-secondary); line-height:1.8; margin-bottom:1.5rem; font-style:italic; }
+    .testimonial-author { display:flex; align-items:center; gap:.875rem; }
+    .testimonial-avatar { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.95rem; color:white; flex-shrink:0; }
+    .av-1 { background:linear-gradient(135deg,#D97706,#F97316); }
+    .av-2 { background:linear-gradient(135deg,#7C3AED,#DB2777); }
+    .av-3 { background:linear-gradient(135deg,#0891B2,#2563EB); }
+    .testimonial-name { font-weight:600; font-size:.9rem; }
+    .testimonial-role { font-size:.78rem; color:var(--text-muted); }
 
     /* =================== PRICING =================== */
-    #pricing { padding: 6rem 0; }
-    .pricing-header { text-align: center; margin-bottom: 4rem; }
-    .pricing-header .section-description { margin: 0 auto; }
+    #pricing { padding:6rem 0; }
+    .pricing-header { text-align:center; margin-bottom:4rem; }
+    .pricing-header .section-description { margin:0 auto; }
 
-    .pricing-toggle {
-      display: flex; align-items: center; justify-content: center;
-      gap: 1rem; margin-top: 2rem;
-    }
-    .pricing-toggle span { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); }
-    .pricing-toggle span.active { color: var(--text-primary); }
-
+    .pricing-toggle { display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:2rem; }
+    .pricing-toggle span { font-size:.9rem; font-weight:500; color:var(--text-muted); }
+    .pricing-toggle span.active { color:var(--text-primary); }
     .toggle-switch {
-      width: 48px; height: 26px;
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      border-radius: 13px; position: relative; cursor: pointer;
-      transition: background 0.3s, border-color 0.3s;
+      width:48px; height:26px;
+      background:var(--bg-secondary); border:1px solid var(--border);
+      border-radius:13px; position:relative; cursor:pointer; transition:background .3s, border-color .3s;
     }
-    .toggle-switch.on { background: var(--gradient); border-color: transparent; }
-    .toggle-thumb {
-      position: absolute; top: 3px; left: 3px;
-      width: 18px; height: 18px;
-      background: white; border-radius: 50%;
-      transition: transform 0.3s;
-    }
-    .toggle-switch.on .toggle-thumb { transform: translateX(22px); }
+    .toggle-switch.on { background:var(--gradient); border-color:transparent; }
+    .toggle-thumb { position:absolute; top:3px; left:3px; width:18px; height:18px; background:white; border-radius:50%; transition:transform .3s; }
+    .toggle-switch.on .toggle-thumb { transform:translateX(22px); }
+    .save-badge { font-size:.7rem; font-weight:700; color:#22C55E; background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.25); padding:.2rem .5rem; border-radius:.375rem; }
 
-    .save-badge {
-      font-size: 0.7rem; font-weight: 700; color: #22C55E;
-      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25);
-      padding: 0.2rem 0.5rem; border-radius: 0.375rem;
-    }
-
-    .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; align-items: start; }
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; align-items:start; }
 
     .pricing-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 1.5rem; padding: 2.5rem;
-      transition: all 0.3s; position: relative;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:1.5rem; padding:2.5rem;
+      transition:all .3s; position:relative;
     }
-    .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-card:hover { transform:translateY(-4px); }
     .pricing-card.popular {
-      border-color: var(--accent);
-      background: linear-gradient(180deg, rgba(99,102,241,0.08) 0%, var(--bg-card) 100%);
-      box-shadow: 0 0 40px rgba(99,102,241,0.12);
+      border-color:var(--gold);
+      background:linear-gradient(180deg, rgba(217,119,6,.07) 0%, var(--bg-card) 100%);
+      box-shadow:0 0 40px rgba(217,119,6,.1);
     }
-
     .popular-badge {
-      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-      background: var(--gradient); color: white;
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.09em;
-      text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 2rem;
-      white-space: nowrap;
+      position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+      background:var(--gradient); color:white;
+      font-size:.68rem; font-weight:700; letter-spacing:.09em;
+      text-transform:uppercase; padding:.3rem 1rem; border-radius:2rem; white-space:nowrap;
     }
 
-    .plan-name { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
-    .plan-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.75rem; line-height: 1.5; }
-
-    .plan-price { display: flex; align-items: baseline; gap: 0.25rem; margin-bottom: 2rem; }
-    .plan-currency { font-family: 'Archivo', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text-secondary); align-self: flex-start; margin-top: 0.5rem; }
-    .plan-amount { font-family: 'Archivo', sans-serif; font-size: 3rem; font-weight: 900; line-height: 1; }
-    .plan-period { font-size: 0.875rem; color: var(--text-muted); }
-
-    .plan-divider { height: 1px; background: var(--border); margin-bottom: 2rem; }
-
-    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 2rem; }
-    .plan-feature { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-secondary); }
-    .plan-feature.off { opacity: 0.38; }
-
-    .feat-icon {
-      width: 20px; height: 20px; flex-shrink: 0;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    }
-    .feat-icon.yes { background: rgba(34,197,94,0.15); }
-    .feat-icon.no  { background: rgba(239,68,68,0.1); }
-    .feat-icon svg { width: 11px; height: 11px; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .plan-name { font-family:'Playfair Display',serif; font-weight:700; font-size:1rem; margin-bottom:.4rem; }
+    .plan-desc { font-size:.85rem; color:var(--text-muted); margin-bottom:1.75rem; line-height:1.5; }
+    .plan-price { display:flex; align-items:baseline; gap:.25rem; margin-bottom:2rem; }
+    .plan-currency { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:var(--text-secondary); align-self:flex-start; margin-top:.5rem; }
+    .plan-amount { font-family:'Playfair Display',serif; font-size:3rem; font-weight:900; line-height:1; }
+    .plan-period { font-size:.875rem; color:var(--text-muted); }
+    .plan-divider { height:1px; background:var(--border); margin-bottom:2rem; }
+    .plan-features { list-style:none; display:flex; flex-direction:column; gap:.875rem; margin-bottom:2rem; }
+    .plan-feature { display:flex; align-items:center; gap:.75rem; font-size:.9rem; color:var(--text-secondary); }
+    .plan-feature.off { opacity:.38; }
+    .feat-icon { width:20px; height:20px; flex-shrink:0; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+    .feat-icon.yes { background:rgba(34,197,94,.15); }
+    .feat-icon.no  { background:rgba(239,68,68,.1); }
+    .feat-icon svg { width:11px; height:11px; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; fill:none; }
 
     .plan-cta {
-      width: 100%; padding: 0.875rem; border-radius: 0.75rem;
-      font-weight: 700; font-size: 0.95rem; cursor: pointer;
-      transition: all 0.2s; text-align: center; border: none;
-      text-decoration: none; display: block;
+      width:100%; padding:.875rem; border-radius:.75rem;
+      font-weight:700; font-size:.95rem; cursor:pointer;
+      transition:all .2s; text-align:center; border:none;
+      text-decoration:none; display:block;
     }
-    .cta-outline {
-      background: transparent; border: 1px solid var(--border) !important; color: var(--text-primary);
-    }
-    .cta-outline:hover { border-color: var(--accent) !important; background: rgba(99,102,241,0.05); }
-    .cta-gradient { background: var(--gradient); color: white; box-shadow: 0 4px 20px rgba(99,102,241,0.35); }
-    .cta-gradient:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.5); }
+    .cta-outline { background:transparent; border:1px solid var(--border) !important; color:var(--text-primary); }
+    .cta-outline:hover { border-color:var(--gold) !important; background:rgba(217,119,6,.05); }
+    .cta-gradient { background:var(--gradient); color:white; box-shadow:0 4px 20px rgba(217,119,6,.3); }
+    .cta-gradient:hover { opacity:.9; transform:translateY(-2px); box-shadow:0 8px 30px rgba(217,119,6,.45); }
 
     /* =================== CONTACT =================== */
-    #contact { padding: 6rem 0; }
+    #contact { padding:6rem 0; }
+    .contact-wrapper { display:grid; grid-template-columns:1fr 1.3fr; gap:5rem; align-items:start; }
+    .contact-info h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,2.75rem); font-weight:800; line-height:1.2; margin-bottom:1rem; }
+    .contact-info p { color:var(--text-secondary); line-height:1.75; margin-bottom:2.5rem; font-size:1.05rem; }
 
-    .contact-wrapper { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; align-items: start; }
+    .contact-channels { display:flex; flex-direction:column; gap:1rem; }
+    .contact-channel { display:flex; align-items:center; gap:1rem; text-decoration:none; cursor:pointer; transition:transform .2s; }
+    .contact-channel:hover { transform:translateX(4px); }
+    .channel-icon { width:44px; height:44px; border-radius:.75rem; background:var(--bg-secondary); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:border-color .2s, background .2s; }
+    .contact-channel:hover .channel-icon { border-color:var(--gold); background:rgba(217,119,6,.1); }
+    .channel-icon svg { width:20px; height:20px; stroke:var(--text-secondary); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; transition:stroke .2s; }
+    .contact-channel:hover .channel-icon svg { stroke:var(--gold-light); }
+    .channel-lbl { font-size:.72rem; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:.08em; }
+    .channel-val { font-size:.95rem; font-weight:500; color:var(--text-primary); }
 
-    .contact-info h2 {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      font-weight: 800; line-height: 1.2; margin-bottom: 1rem;
-    }
-    .contact-info p { color: var(--text-secondary); line-height: 1.75; margin-bottom: 2.5rem; font-size: 1.05rem; }
-
-    .contact-channels { display: flex; flex-direction: column; gap: 1rem; }
-
-    .contact-channel {
-      display: flex; align-items: center; gap: 1rem;
-      text-decoration: none; cursor: pointer; transition: transform 0.2s;
-    }
-    .contact-channel:hover { transform: translateX(4px); }
-
-    .channel-icon {
-      width: 44px; height: 44px; border-radius: 0.75rem;
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .contact-channel:hover .channel-icon { border-color: var(--accent); background: rgba(99,102,241,0.1); }
-    .channel-icon svg { width: 20px; height: 20px; stroke: var(--text-secondary); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
-    .contact-channel:hover .channel-icon svg { stroke: var(--accent-light); }
-
-    .channel-lbl { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
-    .channel-val { font-size: 0.95rem; font-weight: 500; color: var(--text-primary); }
-
-    .contact-form-wrap {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 1.5rem; padding: 2.5rem;
-    }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
-
-    .form-label { font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); }
-
+    .contact-form-wrap { background:var(--bg-card); border:1px solid var(--border); border-radius:1.5rem; padding:2.5rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+    .form-group { display:flex; flex-direction:column; gap:.5rem; margin-bottom:1.25rem; }
+    .form-label { font-size:.82rem; font-weight:600; color:var(--text-secondary); }
     .form-input, .form-textarea, .form-select {
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      color: var(--text-primary); padding: 0.75rem 1rem;
-      border-radius: 0.75rem; font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.925rem; outline: none; width: 100%;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      background:var(--bg-secondary); border:1px solid var(--border);
+      color:var(--text-primary); padding:.75rem 1rem;
+      border-radius:.75rem; font-family:'Inter',sans-serif; font-size:.925rem;
+      outline:none; width:100%; transition:border-color .2s, box-shadow .2s;
     }
-    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
-    .form-input:focus, .form-textarea:focus, .form-select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
-    }
-    .form-textarea { resize: vertical; min-height: 130px; }
-
-    .form-select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
-    }
-    .form-select option { background: var(--bg-secondary); }
-
-    .form-submit {
-      width: 100%; margin-top: 1.5rem;
-      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-    }
-    .form-submit svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; }
-    .form-submit:hover svg { transform: translateX(3px); }
-
-    .form-success {
-      display: none; text-align: center; padding: 2rem;
-    }
-    .form-success.visible { display: block; }
-    .success-icon {
-      width: 60px; height: 60px; background: rgba(34,197,94,0.15);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1rem;
-    }
-    .success-title { font-family: 'Archivo', sans-serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .success-text { color: var(--text-secondary); font-size: 0.9rem; }
+    .form-input::placeholder, .form-textarea::placeholder { color:var(--text-muted); }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(217,119,6,.12); }
+    .form-textarea { resize:vertical; min-height:130px; }
+    .form-select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7268' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1rem center; padding-right:2.5rem; }
+    .form-select option { background:var(--bg-secondary); }
+    .form-submit { width:100%; margin-top:1.5rem; display:flex; align-items:center; justify-content:center; gap:.5rem; }
+    .form-submit svg { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transition:transform .2s; }
+    .form-submit:hover svg { transform:translateX(3px); }
+    .form-success { display:none; text-align:center; padding:2rem; }
+    .form-success.visible { display:block; }
+    .success-icon { width:60px; height:60px; background:rgba(34,197,94,.15); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; }
+    .success-title { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; margin-bottom:.5rem; }
+    .success-text { color:var(--text-secondary); font-size:.9rem; }
 
     /* =================== FOOTER =================== */
-    footer { border-top: 1px solid var(--border); padding: 3rem 0; }
-    .footer-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1.5rem;
-    }
-    .footer-logo { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 1.1rem; text-decoration: none; color: var(--text-primary); }
-    .footer-logo span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-    .footer-nav { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
-    .footer-nav a { font-size: 0.875rem; color: var(--text-muted); text-decoration: none; cursor: pointer; transition: color 0.2s; }
-    .footer-nav a:hover { color: var(--text-primary); }
-
-    .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+    footer { border-top:1px solid var(--border); padding:3rem 0; }
+    .footer-inner { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; }
+    .footer-logo { font-family:'Playfair Display',serif; font-weight:800; font-size:1.1rem; text-decoration:none; color:var(--text-primary); }
+    .footer-logo span { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .footer-nav { display:flex; gap:1.5rem; list-style:none; flex-wrap:wrap; }
+    .footer-nav a { font-size:.875rem; color:var(--text-muted); text-decoration:none; cursor:pointer; transition:color .2s; }
+    .footer-nav a:hover { color:var(--text-primary); }
+    .footer-copy { font-size:.8rem; color:var(--text-muted); }
 
     /* =================== SCROLL TOP =================== */
     .scroll-top {
-      position: fixed; bottom: 2rem; right: 2rem;
-      width: 44px; height: 44px; background: var(--gradient);
-      border: none; border-radius: 0.75rem;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; opacity: 0; transform: translateY(20px);
-      transition: opacity 0.3s, transform 0.3s;
-      z-index: 40; box-shadow: 0 4px 16px rgba(99,102,241,0.4);
+      position:fixed; bottom:2rem; right:2rem;
+      width:44px; height:44px; background:var(--gradient);
+      border:none; border-radius:.75rem;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; opacity:0; transform:translateY(20px);
+      transition:opacity .3s, transform .3s;
+      z-index:40; box-shadow:0 4px 16px rgba(217,119,6,.35);
     }
-    .scroll-top.visible { opacity: 1; transform: translateY(0); }
-    .scroll-top svg { width: 20px; height: 20px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .scroll-top.visible { opacity:1; transform:translateY(0); }
+    .scroll-top svg { width:20px; height:20px; stroke:white; fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
 
     /* =================== RESPONSIVE =================== */
-    @media (max-width: 1024px) {
-      .projects-grid { grid-template-columns: repeat(2,1fr); }
-      .testimonials-grid { grid-template-columns: repeat(2,1fr); }
-      .pricing-grid { grid-template-columns: repeat(2,1fr); }
-      .pricing-grid > :last-child { grid-column: 1/-1; max-width: 50%; margin: 0 auto; width: 100%; }
+    @media (max-width:1024px) {
+      .projects-grid { grid-template-columns:repeat(2,1fr); }
+      .testimonials-grid { grid-template-columns:repeat(2,1fr); }
+      .pricing-grid { grid-template-columns:repeat(2,1fr); }
+      .pricing-grid > :last-child { grid-column:1/-1; max-width:50%; margin:0 auto; width:100%; }
     }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-
-      .hero-stats { grid-template-columns: repeat(3,1fr); gap: 1rem; }
-      .hero-stat-number { font-size: 1.8rem; }
-
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .about-image { max-width: 340px; margin: 0 auto; }
-      .about-badge { bottom: 0.5rem; right: 0.5rem; }
-
-      .projects-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .pricing-grid > :last-child { grid-column: auto; max-width: 100%; }
-      .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
-      .form-row { grid-template-columns: 1fr; }
-      .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+    @media (max-width:768px) {
+      .nav-links { display:none; } .hamburger { display:flex; }
+      .hero-stats { grid-template-columns:repeat(3,1fr); gap:1rem; }
+      .hero-stat-number { font-size:1.8rem; }
+      .about-grid { grid-template-columns:1fr; gap:3rem; }
+      .about-image { max-width:340px; margin:0 auto; }
+      .about-badge { bottom:.5rem; right:.5rem; }
+      .services-grid { grid-template-columns:1fr; }
+      .projects-grid { grid-template-columns:1fr; }
+      .testimonials-grid { grid-template-columns:1fr; }
+      .pricing-grid { grid-template-columns:1fr; }
+      .pricing-grid > :last-child { grid-column:auto; max-width:100%; }
+      .contact-wrapper { grid-template-columns:1fr; gap:3rem; }
+      .form-row { grid-template-columns:1fr; }
+      .footer-inner { flex-direction:column; align-items:center; text-align:center; }
     }
-
-    @media (max-width: 480px) {
-      .hero-actions { flex-direction: column; }
-      .btn-primary, .btn-secondary { justify-content: center; }
-      .about-highlights { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: repeat(3,1fr); }
+    @media (max-width:480px) {
+      .hero-actions { flex-direction:column; }
+      .btn-primary, .btn-secondary { justify-content:center; }
+      .about-highlights { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -843,11 +616,11 @@
 
 <!-- ====== NAVBAR ====== -->
 <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
-  <a href="#hero" class="nav-logo">John<span>.</span></a>
+  <a href="#hero" class="nav-logo">Your Name<span>.</span></a>
   <ul class="nav-links" role="list">
     <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Portfolio</a></li>
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#contact" class="nav-cta">Hire Me</a></li>
@@ -858,12 +631,12 @@
 </nav>
 
 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-  <a href="#about" class="m-link">About</a>
-  <a href="#skills" class="m-link">Skills</a>
-  <a href="#projects" class="m-link">Projects</a>
+  <a href="#about"        class="m-link">About</a>
+  <a href="#services"     class="m-link">Services</a>
+  <a href="#projects"     class="m-link">Portfolio</a>
   <a href="#testimonials" class="m-link">Reviews</a>
-  <a href="#pricing" class="m-link">Pricing</a>
-  <a href="#contact" class="m-link">Hire Me</a>
+  <a href="#pricing"      class="m-link">Pricing</a>
+  <a href="#contact"      class="m-link">Hire Me</a>
 </nav>
 
 <!-- ====== HERO ====== -->
@@ -881,20 +654,18 @@
       </div>
 
       <h1 class="hero-title">
-        Hi, I'm John Doe<br>
-        <span>
-          <span class="typing-text" id="typingText" aria-live="polite"></span><span class="cursor" aria-hidden="true">|</span>
-        </span>
+        Bringing Events<br>to Life Through<br>
+        <em><span class="typing-text" id="typingText" aria-live="polite"></span><span class="cursor" aria-hidden="true">|</span></em>
       </h1>
 
       <p class="hero-description">
-        I craft beautiful, performant digital experiences — from pixel-perfect UIs to scalable back-end systems. Let's build something remarkable together.
+        Graphic Designer specializing in 2D Key Visual adaptation and 3D event visualization. From backdrop banners to full booth structures — I transform concepts into production-ready deliverables.
       </p>
 
       <div class="hero-actions">
         <a href="#projects" class="btn-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          View My Work
+          View Portfolio
         </a>
         <a href="#contact" class="btn-secondary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -903,17 +674,17 @@
       </div>
 
       <div class="hero-socials" role="list" aria-label="Social links">
-        <a href="#" role="listitem" aria-label="GitHub" title="GitHub">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <a href="#" role="listitem" aria-label="Behance portfolio" title="Behance">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h6.5C9.43 6 11 7.57 11 9.5S9.43 13 7.5 13H1V6z"/><path d="M1 13h7.5C10.43 13 12 14.57 12 16.5S10.43 20 8.5 20H1v-7z"/><path d="M14 9h9"/><path d="M17 6a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z"/></svg>
+        </a>
+        <a href="#" role="listitem" aria-label="Instagram" title="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </a>
         <a href="#" role="listitem" aria-label="LinkedIn" title="LinkedIn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
-        <a href="#" role="listitem" aria-label="Twitter" title="Twitter">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
-        </a>
-        <a href="#" role="listitem" aria-label="Dribbble" title="Dribbble">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        <a href="#" role="listitem" aria-label="Email" title="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
       </div>
     </div>
@@ -924,12 +695,12 @@
         <div class="hero-stat-label">Years Experience</div>
       </div>
       <div>
-        <div class="hero-stat-number">80+</div>
-        <div class="hero-stat-label">Projects Delivered</div>
+        <div class="hero-stat-number">120+</div>
+        <div class="hero-stat-label">Events Served</div>
       </div>
       <div>
-        <div class="hero-stat-number">40+</div>
-        <div class="hero-stat-label">Happy Clients</div>
+        <div class="hero-stat-number">500+</div>
+        <div class="hero-stat-label">Deliverables Produced</div>
       </div>
     </div>
   </div>
@@ -939,7 +710,7 @@
 
 <!-- ====== ABOUT ====== -->
 <section id="about" aria-labelledby="about-heading">
-  <div class="container" style="padding-top:6rem; padding-bottom:6rem;">
+  <div class="container" style="padding-top:6rem;padding-bottom:6rem;">
     <div class="about-grid">
       <div class="about-image-wrapper reveal-left">
         <div class="about-image">
@@ -947,14 +718,14 @@
             <div class="about-avatar-ring" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             </div>
-            <div class="about-img-name">John Doe</div>
-            <div class="about-img-role">Full Stack Developer</div>
+            <div class="about-img-name">Your Name</div>
+            <div class="about-img-role">Graphic Designer</div>
           </div>
         </div>
         <div class="about-image-glow" aria-hidden="true"></div>
         <div class="about-badge" aria-label="5 years of experience">
           <div class="about-badge-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
           <div>
             <div class="about-badge-num">5 Yrs</div>
@@ -965,31 +736,31 @@
 
       <div class="about-text reveal-right">
         <span class="section-label">About Me</span>
-        <h2 class="section-title" id="about-heading">Turning ideas into <span class="gradient-text">reality</span></h2>
-        <p>I'm a full-stack developer with a passion for crafting exceptional digital experiences. With over 5 years in the field, I bridge the gap between design and engineering to deliver products that users love.</p>
-        <p>I specialize in React, Node.js, and modern cloud infrastructure. Whether it's a sleek marketing site or a complex SaaS platform, I bring the same attention to detail to every project.</p>
+        <h2 class="section-title" id="about-heading">Where design meets <span class="gradient-text">dimension</span></h2>
+        <p>I'm a graphic designer with 5+ years of experience specializing in event design production. My core expertise lies in adapting Key Visuals — taking an existing creative concept and translating it faithfully across every touchpoint an event needs.</p>
+        <p>On the 3D side, I work extensively in SketchUp to build event structures from scratch: booths, arch structures, headerboards, and full event floor layouts. I bridge the gap between a high-quality design file and a buildable, real-world structure.</p>
 
         <div class="about-highlights">
           <div class="about-highlight">
             <div class="about-hl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div><strong>Clean Code</strong><span>Well-documented, maintainable</span></div>
+            <div><strong>KV Adaptation</strong><span>Consistent across all formats</span></div>
           </div>
           <div class="about-highlight">
             <div class="about-hl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div><strong>On-Time Delivery</strong><span>Reliable project timelines</span></div>
+            <div><strong>Print-Ready Output</strong><span>Correct specs, bleed & resolution</span></div>
           </div>
           <div class="about-highlight">
             <div class="about-hl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div><strong>Performance First</strong><span>Optimized for speed</span></div>
+            <div><strong>3D Visualization</strong><span>SketchUp models &amp; Layout</span></div>
           </div>
           <div class="about-highlight">
             <div class="about-hl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div><strong>24/7 Support</strong><span>Always there when needed</span></div>
+            <div><strong>Fast Turnaround</strong><span>Tight event deadlines met</span></div>
           </div>
         </div>
 
         <div class="about-actions">
-          <a href="#contact" class="btn-primary">Let's Talk</a>
+          <a href="#contact" class="btn-primary">Work With Me</a>
           <a href="#" class="btn-secondary" aria-label="Download CV">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download CV
@@ -1002,23 +773,94 @@
 
 <div class="section-divider"></div>
 
-<!-- ====== SKILLS ====== -->
-<section id="skills" aria-labelledby="skills-heading">
+<!-- ====== SERVICES ====== -->
+<section id="services" aria-labelledby="services-heading">
   <div class="container">
-    <div class="skills-header reveal">
-      <span class="section-label">Tech Stack</span>
-      <h2 class="section-title" id="skills-heading">Tools of the <span class="gradient-text">trade</span></h2>
-      <p class="section-description">A curated set of technologies I use to build fast, scalable, and beautiful products.</p>
+    <div class="services-header reveal">
+      <span class="section-label">What I Do</span>
+      <h2 class="section-title" id="services-heading">My <span class="gradient-text">Services</span></h2>
+      <p class="section-description">From adapting a Key Visual into dozens of formats to building 3D event structures — I handle the full design production pipeline.</p>
     </div>
 
-    <div class="skills-tabs" role="tablist" aria-label="Skill categories">
-      <button class="skill-tab active" data-cat="all" role="tab" aria-selected="true">All</button>
-      <button class="skill-tab" data-cat="frontend" role="tab" aria-selected="false">Frontend</button>
-      <button class="skill-tab" data-cat="backend" role="tab" aria-selected="false">Backend</button>
-      <button class="skill-tab" data-cat="tools" role="tab" aria-selected="false">Tools & Cloud</button>
+    <div class="services-grid reveal">
+      <!-- Service 1 -->
+      <div class="service-card" tabindex="0">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div>
+          <div class="service-title">2D Key Visual Adaptation</div>
+          <div class="service-desc">Taking an existing Key Visual and adapting it into all required event deliverables — maintaining design consistency across every format and size.</div>
+          <div class="service-tags">
+            <span class="service-tag">Backdrop</span>
+            <span class="service-tag">Banner</span>
+            <span class="service-tag">Signage</span>
+            <span class="service-tag">Standee</span>
+            <span class="service-tag">Rollup</span>
+            <span class="service-tag">Bunting</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card" tabindex="0">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div>
+          <div class="service-title">Event Print Collateral</div>
+          <div class="service-desc">Producing the full suite of print-ready artwork for events — correctly sized, with proper bleed, crop marks, and at the right resolution for vendors.</div>
+          <div class="service-tags">
+            <span class="service-tag">Print-Ready</span>
+            <span class="service-tag">Bleed & Crop</span>
+            <span class="service-tag">CMYK</span>
+            <span class="service-tag">Large Format</span>
+            <span class="service-tag">Packaging</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card" tabindex="0">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div>
+          <div class="service-title">3D Event Layout (SketchUp)</div>
+          <div class="service-desc">Building complete 3D event floor plans and venue layouts in SketchUp — giving clients a clear spatial view of how the event will look and flow before production begins.</div>
+          <div class="service-tags">
+            <span class="service-tag">Floor Plan</span>
+            <span class="service-tag">Venue Layout</span>
+            <span class="service-tag">SketchUp</span>
+            <span class="service-tag">Layout Export</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card" tabindex="0">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <div>
+          <div class="service-title">3D Structure Design (SketchUp)</div>
+          <div class="service-desc">Converting high-quality 2D designs into fully modeled 3D event structures — booths, arch structures, headerboards, stages, and other fabricated event elements.</div>
+          <div class="service-tags">
+            <span class="service-tag">Booth</span>
+            <span class="service-tag">Arch Structure</span>
+            <span class="service-tag">Headerboard</span>
+            <span class="service-tag">Stage</span>
+            <span class="service-tag">Truss</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="skills-grid reveal" id="skillsGrid" role="list"></div>
+    <!-- Tools -->
+    <div class="tools-strip-title reveal" style="margin-top:4rem;">
+      <span>Software & Tools</span>
+    </div>
+    <div class="tools-strip reveal" id="toolsStrip"></div>
   </div>
 </section>
 
@@ -1029,14 +871,14 @@
   <div class="container">
     <div class="projects-header">
       <div class="reveal">
-        <span class="section-label">My Work</span>
-        <h2 class="section-title" id="projects-heading">Featured <span class="gradient-text">Projects</span></h2>
+        <span class="section-label">Portfolio</span>
+        <h2 class="section-title" id="projects-heading">Selected <span class="gradient-text">Works</span></h2>
       </div>
       <div class="projects-filters reveal" role="group" aria-label="Filter by category">
         <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="web">Web App</button>
-        <button class="filter-btn" data-filter="mobile">Mobile</button>
-        <button class="filter-btn" data-filter="design">UI Design</button>
+        <button class="filter-btn" data-filter="2d">2D Adaptation</button>
+        <button class="filter-btn" data-filter="3d">3D Structure</button>
+        <button class="filter-btn" data-filter="layout">Event Layout</button>
       </div>
     </div>
     <div class="projects-grid" id="projectsGrid"></div>
@@ -1051,7 +893,7 @@
     <div class="testimonials-header reveal">
       <span class="section-label">Client Reviews</span>
       <h2 class="section-title" id="testimonials-heading">What clients <span class="gradient-text">say</span></h2>
-      <p class="section-description">Trusted by founders, product teams, and agencies worldwide.</p>
+      <p class="section-description">Trusted by event agencies, marketing teams, and production houses.</p>
     </div>
     <div class="testimonials-grid" id="testimonialsGrid"></div>
   </div>
@@ -1065,14 +907,14 @@
     <div class="pricing-header reveal">
       <span class="section-label">Investment</span>
       <h2 class="section-title" id="pricing-heading">Transparent <span class="gradient-text">Pricing</span></h2>
-      <p class="section-description">Simple, predictable pricing. No hidden fees. Pick the plan that fits your project.</p>
+      <p class="section-description">Clear, project-based pricing. No surprises. Choose the package that fits your event.</p>
       <div class="pricing-toggle" role="group" aria-label="Billing period">
-        <span id="lblMonthly" class="active">Monthly</span>
-        <div class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" aria-label="Annual billing" tabindex="0">
+        <span id="lblMonthly" class="active">Per Project</span>
+        <div class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" aria-label="Retainer pricing" tabindex="0">
           <div class="toggle-thumb"></div>
         </div>
-        <span id="lblAnnual">Annual</span>
-        <span class="save-badge">Save 25%</span>
+        <span id="lblAnnual">Monthly Retainer</span>
+        <span class="save-badge">Save 20%</span>
       </div>
     </div>
     <div class="pricing-grid" id="pricingGrid"></div>
@@ -1087,25 +929,25 @@
     <div class="contact-wrapper">
       <div class="contact-info reveal-left">
         <span class="section-label">Get In Touch</span>
-        <h2 id="contact-heading">Let's work <span class="gradient-text">together</span></h2>
-        <p>Have a project in mind or need a skilled developer on your team? Drop me a message and I'll get back within 24 hours.</p>
+        <h2 id="contact-heading">Let's make your event <span class="gradient-text">unforgettable</span></h2>
+        <p>Have an upcoming event that needs design production? Send me the brief and I'll get back to you within 24 hours with a quote and timeline.</p>
 
         <div class="contact-channels">
-          <a href="mailto:hello@johndoe.dev" class="contact-channel" aria-label="Send email">
+          <a href="mailto:hello@yourname.com" class="contact-channel" aria-label="Send email">
             <div class="channel-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div>
               <div class="channel-lbl">Email</div>
-              <div class="channel-val">hello@johndoe.dev</div>
+              <div class="channel-val">hello@yourname.com</div>
             </div>
           </a>
-          <a href="tel:+1234567890" class="contact-channel" aria-label="Call">
+          <a href="https://wa.me/1234567890" class="contact-channel" aria-label="WhatsApp">
             <div class="channel-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
             </div>
             <div>
-              <div class="channel-lbl">Phone</div>
+              <div class="channel-lbl">WhatsApp</div>
               <div class="channel-val">+1 (234) 567-890</div>
             </div>
           </a>
@@ -1114,8 +956,8 @@
               <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div>
-              <div class="channel-lbl">Location</div>
-              <div class="channel-val">San Francisco, CA — Remote OK</div>
+              <div class="channel-lbl">Based In</div>
+              <div class="channel-val">Your City — Open to Remote</div>
             </div>
           </div>
         </div>
@@ -1126,34 +968,35 @@
           <div class="form-row">
             <div class="form-group">
               <label for="firstName" class="form-label">First Name</label>
-              <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" required autocomplete="given-name">
+              <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Sarah" required autocomplete="given-name">
             </div>
             <div class="form-group">
               <label for="lastName" class="form-label">Last Name</label>
-              <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Smith" required autocomplete="family-name">
+              <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Lee" required autocomplete="family-name">
             </div>
           </div>
           <div class="form-group">
             <label for="email" class="form-label">Email Address</label>
-            <input type="email" id="email" name="email" class="form-input" placeholder="john@company.com" required autocomplete="email">
+            <input type="email" id="email" name="email" class="form-input" placeholder="sarah@company.com" required autocomplete="email">
           </div>
           <div class="form-group">
             <label for="projectType" class="form-label">Project Type</label>
             <select id="projectType" name="projectType" class="form-select">
               <option value="">Select project type…</option>
-              <option value="website">Website / Landing Page</option>
-              <option value="webapp">Web Application</option>
-              <option value="mobile">Mobile App</option>
-              <option value="consulting">Technical Consulting</option>
+              <option value="kv-adapt">2D Key Visual Adaptation</option>
+              <option value="print">Print Collateral Production</option>
+              <option value="3d-layout">3D Event Layout (SketchUp)</option>
+              <option value="3d-struct">3D Structure Design (SketchUp)</option>
+              <option value="full">Full Event Design Package</option>
               <option value="other">Other</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="message" class="form-label">Message</label>
-            <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project, timeline, and budget…" required></textarea>
+            <label for="message" class="form-label">Project Brief</label>
+            <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your event, the deliverables you need, your timeline, and any existing brand assets…" required></textarea>
           </div>
           <button type="submit" class="btn-primary form-submit" aria-label="Send message">
-            Send Message
+            Send Brief
             <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
         </form>
@@ -1161,8 +1004,8 @@
           <div class="success-icon" aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="success-title">Message Sent!</div>
-          <div class="success-text">Thanks for reaching out. I'll get back to you within 24 hours.</div>
+          <div class="success-title">Brief Received!</div>
+          <div class="success-text">Thanks for reaching out. I'll review your project and get back within 24 hours.</div>
         </div>
       </div>
     </div>
@@ -1173,115 +1016,104 @@
 <footer role="contentinfo">
   <div class="container">
     <div class="footer-inner">
-      <a href="#hero" class="footer-logo" aria-label="Back to top">John<span>.</span></a>
+      <a href="#hero" class="footer-logo" aria-label="Back to top">Your Name<span>.</span></a>
       <ul class="footer-nav" role="list">
         <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Portfolio</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <p class="footer-copy">© <span id="yr"></span> John Doe. Designed &amp; built with care.</p>
+      <p class="footer-copy">© <span id="yr"></span> Your Name. Graphic Designer &amp; 3D Visualizer.</p>
     </div>
   </div>
 </footer>
 
-<!-- Scroll-to-top -->
 <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
   <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
 <script>
 // ===== DATA =====
-const SKILLS = [
-  { name:'React',       cat:'frontend', level:'Expert',       abbr:'RE'  },
-  { name:'TypeScript',  cat:'frontend', level:'Expert',       abbr:'TS'  },
-  { name:'Next.js',     cat:'frontend', level:'Expert',       abbr:'NX'  },
-  { name:'Vue.js',      cat:'frontend', level:'Advanced',     abbr:'VUE' },
-  { name:'Tailwind',    cat:'frontend', level:'Expert',       abbr:'TW'  },
-  { name:'CSS / SCSS',  cat:'frontend', level:'Expert',       abbr:'CSS' },
-  { name:'Node.js',     cat:'backend',  level:'Expert',       abbr:'NOD' },
-  { name:'Python',      cat:'backend',  level:'Advanced',     abbr:'PY'  },
-  { name:'PostgreSQL',  cat:'backend',  level:'Advanced',     abbr:'PG'  },
-  { name:'GraphQL',     cat:'backend',  level:'Advanced',     abbr:'GQL' },
-  { name:'Redis',       cat:'backend',  level:'Intermediate', abbr:'RDS' },
-  { name:'MongoDB',     cat:'backend',  level:'Advanced',     abbr:'MDB' },
-  { name:'AWS',         cat:'tools',    level:'Advanced',     abbr:'AWS' },
-  { name:'Docker',      cat:'tools',    level:'Advanced',     abbr:'DKR' },
-  { name:'Git',         cat:'tools',    level:'Expert',       abbr:'GIT' },
-  { name:'Figma',       cat:'tools',    level:'Advanced',     abbr:'FIG' },
-  { name:'Vercel',      cat:'tools',    level:'Expert',       abbr:'VRC' },
-  { name:'Supabase',    cat:'tools',    level:'Advanced',     abbr:'SB'  },
+const TOOLS = [
+  { name:'Adobe Illustrator', abbr:'Ai',  level:'Expert'       },
+  { name:'SketchUp',          abbr:'SKP', level:'Expert'       },
+  { name:'SketchUp Layout',   abbr:'LYT', level:'Expert'       },
+  { name:'Adobe Photoshop',   abbr:'Ps',  level:'Advanced'     },
+  { name:'Adobe InDesign',    abbr:'Id',  level:'Advanced'     },
+  { name:'Adobe Acrobat',     abbr:'Ac',  level:'Advanced'     },
+  { name:'CorelDRAW',         abbr:'CDR', level:'Intermediate' },
 ];
 
 const PROJECTS = [
-  { title:'NovaDash Analytics',    desc:'Real-time SaaS analytics with interactive dashboards, team collaboration, and custom report generation for e-commerce businesses.', tags:['React','Node.js','PostgreSQL'], cat:'web',    stars:128, bg:'pc-1' },
-  { title:'PayFlow Mobile',        desc:'Cross-platform payment app with biometric auth, split billing, and instant peer-to-peer transfers. 10k+ active users.',             tags:['React Native','Stripe','Firebase'], cat:'mobile', stars:94,  bg:'pc-2' },
-  { title:'LexAI Legal Assistant', desc:'AI-powered document assistant that summarizes contracts, flags risk clauses, and answers compliance questions using GPT-4.',         tags:['Next.js','OpenAI','Supabase'], cat:'web',    stars:217, bg:'pc-3' },
-  { title:'GreenTrack App',        desc:'Carbon footprint tracker with gamification, community challenges, and personalized sustainability recommendations.',                  tags:['Flutter','Python','MongoDB'],  cat:'mobile', stars:76,  bg:'pc-4' },
-  { title:'Luminary Design System',desc:'Comprehensive Figma system with 200+ components, dark/light variants, responsive tokens, and developer-ready exports.',              tags:['Figma','Design System','Tokens'], cat:'design', stars:153, bg:'pc-5' },
-  { title:'ShopCraft E-commerce',  desc:'High-performance storefront with headless CMS, advanced filtering, cart optimisation, and Stripe checkout.',                        tags:['Next.js','Shopify','TypeScript'], cat:'web',    stars:89,  bg:'pc-6' },
+  { title:'Tech Summit 2024 — Full KV Suite',      desc:'Adapted a single Key Visual into 22 print deliverables: main backdrop, stage fascia, directional signage, standees, rollups, bunting, and table runners.',                tags:['Illustrator','KV Adaptation','Large Format'], cat:'2d',     bg:'pc-1', type:'2D Adaptation' },
+  { title:'Brand Booth — Auto Expo',               desc:'Designed a 10×6m exhibition booth in SketchUp from brand guidelines. Modeled display counters, header panels, LED column wraps, and floor layout for fabrication.',     tags:['SketchUp','Booth Design','3D Model'],          cat:'3d',     bg:'pc-2', type:'3D Structure'  },
+  { title:'Gala Dinner — Event Floor Layout',      desc:'Produced a complete 3D venue layout for a 500-pax gala dinner: seating clusters, stage, buffet stations, photo backdrop zones, and signage placements.',              tags:['SketchUp','Layout','Venue Planning'],          cat:'layout', bg:'pc-3', type:'Event Layout'  },
+  { title:'Arch Gateway — Product Launch',         desc:'Converted a 2D concept into a fabrication-ready 3D arch structure (8m tall) in SketchUp, including structural layers, lighting groove positions, and panel breakdown.',  tags:['SketchUp','Arch Structure','Fabrication'],    cat:'3d',     bg:'pc-4', type:'3D Structure'  },
+  { title:'Music Festival — Collateral Pack',      desc:'Full print collateral adaptation for a 3-day outdoor festival: main stage backdrop, sponsor boards, wayfinding system, VIP wristbands, and merchandise print files.',  tags:['Illustrator','Print Collateral','Branding'],  cat:'2d',     bg:'pc-5', type:'2D Adaptation' },
+  { title:'Headerboard Series — Retail Roadshow',  desc:'Designed and adapted a 12-city roadshow headerboard series, ensuring brand consistency while localizing specific panels for each city venue and sponsor mix.',          tags:['Illustrator','Headerboard','SketchUp'],       cat:'3d',     bg:'pc-6', type:'3D Structure'  },
 ];
 
 const TESTIMONIALS = [
-  { name:'Sarah Chen',    role:'CEO at NovaTech',       av:'av-1', init:'SC', quote:'John delivered beyond expectations. The platform handles 10,000+ concurrent users without breaking a sweat. His attention to performance is unmatched.' },
-  { name:'Marcus Rivera', role:'Product Manager, FinPulse', av:'av-2', init:'MR', quote:"We've worked with many developers, but John stands out for translating complex requirements into elegant solutions. Delivered 2 weeks early, too!" },
-  { name:'Priya Patel',   role:'Founder, EcoTrack',     av:'av-3', init:'PP', quote:"John is not just a developer — he's a strategic partner. His suggestions improved our UX significantly, and the codebase is pristine. Highly recommend." },
+  { name:'Chloe Tan',      role:'Senior Producer, EventCraft Agency', av:'av-1', init:'CT', quote:'Our KV adaptation turnaround used to take weeks. Working with this designer, we get a complete 20-piece deliverable set within days — and every single file is print-ready on the first pass.' },
+  { name:'David Lim',      role:'Marketing Director, Apex Events',   av:'av-2', init:'DL', quote:'The 3D booth visualization was exactly what our client needed to sign off on the design. Photorealistic, dimensionally accurate, and delivered before the deadline. Outstanding.' },
+  { name:'Priya Nair',     role:'Project Manager, Studio Pulse',     av:'av-3', init:'PN', quote:'I\'ve worked with many designers, but very few understand event production as deeply. The files come in correct specs, right bleed, right colour mode — zero back-and-forth with the printer.' },
 ];
 
 const PLANS = [
   {
-    name:'Starter', desc:'Perfect for small businesses and personal projects.',
-    monthly:800,  period:'/project', popular:false,
+    name:'Starter', desc:'For small events or single-deliverable requests.',
+    monthly:350,  retainer:280,  period:'/project', popular:false,
     features:[
-      {t:'Single landing page',         y:true},
-      {t:'Mobile responsive design',    y:true},
-      {t:'Basic SEO setup',             y:true},
-      {t:'Contact form integration',    y:true},
-      {t:'Custom animations',           y:false},
-      {t:'CMS integration',             y:false},
-      {t:'Ongoing support',             y:false},
+      {t:'Up to 5 print deliverables', y:true},
+      {t:'KV-based adaptation',        y:true},
+      {t:'2 revision rounds',          y:true},
+      {t:'Print-ready files',          y:true},
+      {t:'3D visualization',           y:false},
+      {t:'Fabrication drawings',       y:false},
+      {t:'Priority turnaround',        y:false},
     ],
     cta:'Get Started', ctaCls:'cta-outline',
   },
   {
-    name:'Pro', desc:'For growing businesses that need full web applications.',
-    monthly:3500, period:'/project', popular:true,
+    name:'Pro', desc:'Full event design production — 2D &amp; 3D.',
+    monthly:1200, retainer:960,  period:'/project', popular:true,
     features:[
-      {t:'Full web application',        y:true},
-      {t:'Auth & database',             y:true},
-      {t:'Custom animations & UI',      y:true},
-      {t:'API integrations',            y:true},
-      {t:'CMS integration',             y:true},
-      {t:'3 months support',            y:true},
-      {t:'Dedicated project manager',   y:false},
+      {t:'Unlimited deliverables',     y:true},
+      {t:'Full KV adaptation suite',   y:true},
+      {t:'3D event layout (SketchUp)', y:true},
+      {t:'3D structure design',        y:true},
+      {t:'Fabrication-ready files',    y:true},
+      {t:'3 revision rounds',          y:true},
+      {t:'Priority turnaround',        y:false},
     ],
     cta:'Start a Project', ctaCls:'cta-gradient',
   },
   {
-    name:'Enterprise', desc:'For large-scale systems and long-term partnerships.',
-    monthly:8000, period:'/month', popular:false,
+    name:'Retainer', desc:'Ongoing partner for agencies &amp; production houses.',
+    monthly:2500, retainer:2000, period:'/month', popular:false,
     features:[
-      {t:'Full-stack development',      y:true},
-      {t:'Scalable cloud infra',        y:true},
-      {t:'Team augmentation',           y:true},
-      {t:'Custom integrations',         y:true},
-      {t:'Priority 24/7 support',       y:true},
-      {t:'Dedicated project manager',   y:true},
-      {t:'NDA + custom contracts',      y:true},
+      {t:'Dedicated monthly hours',    y:true},
+      {t:'Unlimited revisions',        y:true},
+      {t:'2D &amp; 3D production',     y:true},
+      {t:'Same-day turnaround',        y:true},
+      {t:'Source files included',      y:true},
+      {t:'Priority scheduling',        y:true},
+      {t:'Dedicated Slack channel',    y:true},
     ],
     cta:"Let's Talk", ctaCls:'cta-outline',
   },
 ];
 
-// ===== RENDER SKILLS =====
-function renderSkills(cat = 'all') {
-  const grid = document.getElementById('skillsGrid');
-  const list = cat === 'all' ? SKILLS : SKILLS.filter(s => s.cat === cat);
-  grid.innerHTML = list.map(s => `
-    <div class="skill-card" role="listitem" tabindex="0" aria-label="${s.name}, ${s.level}">
-      <div class="skill-icon" aria-hidden="true">${s.abbr}</div>
-      <div class="skill-name">${s.name}</div>
-      <div class="skill-level">${s.level}</div>
+// ===== RENDER TOOLS =====
+function renderTools() {
+  document.getElementById('toolsStrip').innerHTML = TOOLS.map(t => `
+    <div class="tool-pill" tabindex="0" aria-label="${t.name}, ${t.level}">
+      <div class="tool-abbr" aria-hidden="true">${t.abbr}</div>
+      <div>
+        <div class="tool-name">${t.name}</div>
+        <div class="tool-level">${t.level}</div>
+      </div>
     </div>
   `).join('');
 }
@@ -1294,16 +1126,17 @@ function renderProjects(filter = 'all') {
     <article class="project-card reveal" tabindex="0" aria-label="Project: ${p.title}">
       <div class="project-image">
         <div class="project-image-bg ${p.bg}">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         </div>
+        <div class="project-image-label" aria-hidden="true">${p.type}</div>
         <div class="project-overlay" aria-hidden="true">
-          <button class="proj-ov-btn btn-demo" tabindex="-1">
-            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Live Demo
+          <button class="proj-ov-btn btn-view" tabindex="-1">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            View
           </button>
-          <button class="proj-ov-btn btn-code" tabindex="-1">
-            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            Code
+          <button class="proj-ov-btn btn-detail" tabindex="-1">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Details
           </button>
         </div>
       </div>
@@ -1312,10 +1145,7 @@ function renderProjects(filter = 'all') {
         <h3 class="project-title">${p.title}</h3>
         <p class="project-desc">${p.desc}</p>
         <div class="project-footer">
-          <div class="project-stars">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            ${p.stars}
-          </div>
+          <span class="project-type">${p.type}</span>
           <div class="project-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </div>
@@ -1350,10 +1180,10 @@ function renderTestimonials() {
 }
 
 // ===== RENDER PRICING =====
-let annual = false;
+let retainer = false;
 function renderPricing() {
   document.getElementById('pricingGrid').innerHTML = PLANS.map(p => {
-    const price = annual ? Math.round(p.monthly * 0.75) : p.monthly;
+    const price = retainer ? p.retainer : p.monthly;
     return `
       <div class="pricing-card reveal ${p.popular ? 'popular' : ''}">
         ${p.popular ? '<div class="popular-badge">Most Popular</div>' : ''}
@@ -1388,38 +1218,37 @@ function renderPricing() {
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.1 });
-
 function reobserve() {
-  document.querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible)')
+  document.querySelectorAll('.reveal:not(.visible),.reveal-left:not(.visible),.reveal-right:not(.visible)')
     .forEach(el => observer.observe(el));
 }
 
 // ===== TYPING =====
-const ROLES = ['Full Stack Developer', 'UI/UX Enthusiast', 'Problem Solver', 'Open Source Contributor'];
-let ri = 0, ci = 0, del = false;
+const ROLES = ['Visual Design', 'KV Adaptation', '3D Visualization', 'Event Production'];
+let ri=0, ci=0, del=false;
 function type() {
   const el = document.getElementById('typingText');
   if (!el) return;
   const cur = ROLES[ri];
   if (del) {
     el.textContent = cur.slice(0, --ci);
-    if (ci === 0) { del = false; ri = (ri + 1) % ROLES.length; setTimeout(type, 450); return; }
+    if (ci === 0) { del=false; ri=(ri+1)%ROLES.length; setTimeout(type,450); return; }
     setTimeout(type, 48);
   } else {
     el.textContent = cur.slice(0, ++ci);
-    if (ci === cur.length) { del = true; setTimeout(type, 2200); return; }
+    if (ci === cur.length) { del=true; setTimeout(type,2200); return; }
     setTimeout(type, 82);
   }
 }
 
-// ===== NAVBAR SCROLL =====
-const navbar  = document.getElementById('navbar');
+// ===== NAVBAR & SCROLL TOP =====
+const navbar = document.getElementById('navbar');
 const scrollBtn = document.getElementById('scrollTopBtn');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
   scrollBtn.classList.toggle('visible', window.scrollY > 400);
-}, { passive: true });
-scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}, { passive:true });
+scrollBtn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
 
 // ===== HAMBURGER =====
 const ham = document.getElementById('hamburger');
@@ -1438,15 +1267,6 @@ document.addEventListener('click', e => {
   }
 });
 
-// ===== SKILL TABS =====
-document.querySelectorAll('.skill-tab').forEach(tab => {
-  tab.addEventListener('click', function() {
-    document.querySelectorAll('.skill-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-    this.classList.add('active'); this.setAttribute('aria-selected','true');
-    renderSkills(this.dataset.cat);
-  });
-});
-
 // ===== PROJECT FILTERS =====
 document.addEventListener('click', e => {
   const btn = e.target.closest('.filter-btn');
@@ -1459,14 +1279,14 @@ document.addEventListener('click', e => {
 // ===== BILLING TOGGLE =====
 const tog = document.getElementById('billingToggle');
 function applyToggle() {
-  tog.classList.toggle('on', annual);
-  tog.setAttribute('aria-checked', annual);
-  document.getElementById('lblMonthly').classList.toggle('active', !annual);
-  document.getElementById('lblAnnual').classList.toggle('active', annual);
+  tog.classList.toggle('on', retainer);
+  tog.setAttribute('aria-checked', retainer);
+  document.getElementById('lblMonthly').classList.toggle('active', !retainer);
+  document.getElementById('lblAnnual').classList.toggle('active', retainer);
   renderPricing();
 }
-tog.addEventListener('click', () => { annual = !annual; applyToggle(); });
-tog.addEventListener('keydown', e => { if (e.key===' '||e.key==='Enter') { e.preventDefault(); annual=!annual; applyToggle(); } });
+tog.addEventListener('click', () => { retainer=!retainer; applyToggle(); });
+tog.addEventListener('keydown', e => { if(e.key===' '||e.key==='Enter'){e.preventDefault();retainer=!retainer;applyToggle();} });
 
 // ===== CONTACT FORM =====
 document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -1481,7 +1301,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
 // ===== INIT =====
 document.getElementById('yr').textContent = new Date().getFullYear();
-renderSkills();
+renderTools();
 renderProjects();
 renderTestimonials();
 renderPricing();
