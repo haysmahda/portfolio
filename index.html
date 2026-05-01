@@ -434,6 +434,7 @@
     .pc-4 { background:linear-gradient(135deg,#0D0D1A,#1A2244,#2D4490); }
     .pc-5 { background:linear-gradient(135deg,#1A0A00,#4D2200,#8B3A00); }
     .pc-6 { background:linear-gradient(135deg,#1A1500,#443800,#8B7200); }
+    .pc-7 { background:linear-gradient(135deg,#091520,#0D2D45,#0E4D6E); }
 
     /* =================== TESTIMONIALS =================== */
     #testimonials { padding:6rem 0; background:linear-gradient(180deg,transparent,rgba(249,115,22,.025),transparent); }
@@ -480,7 +481,7 @@
     .toggle-switch.on .toggle-thumb { transform:translateX(22px); }
     .save-badge { font-size:.7rem; font-weight:700; color:#22C55E; background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.25); padding:.2rem .5rem; border-radius:.375rem; }
 
-    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; align-items:start; }
+    .pricing-grid { display:grid; grid-template-columns:repeat(2,1fr); max-width:820px; margin:0 auto; gap:1.5rem; align-items:start; }
 
     .pricing-card {
       background:var(--bg-card); border:1px solid var(--border);
@@ -688,8 +689,6 @@
     @media (max-width:1024px) {
       .projects-grid { grid-template-columns:repeat(2,1fr); }
       .testimonials-grid { grid-template-columns:repeat(2,1fr); }
-      .pricing-grid { grid-template-columns:repeat(2,1fr); }
-      .pricing-grid > :last-child { grid-column:1/-1; max-width:50%; margin:0 auto; width:100%; }
     }
     @media (max-width:768px) {
       .nav-links { display:none; } .hamburger { display:flex; }
@@ -702,7 +701,6 @@
       .projects-grid { grid-template-columns:1fr; }
       .testimonials-grid { grid-template-columns:1fr; }
       .pricing-grid { grid-template-columns:1fr; }
-      .pricing-grid > :last-child { grid-column:auto; max-width:100%; }
       .contact-wrapper { grid-template-columns:1fr; gap:3rem; }
       .form-row { grid-template-columns:1fr; }
       .footer-inner { flex-direction:column; align-items:center; text-align:center; }
@@ -981,6 +979,7 @@
         <button class="filter-btn" data-filter="2d">2D Adaptation</button>
         <button class="filter-btn" data-filter="3d">3D Structure</button>
         <button class="filter-btn" data-filter="layout">Event Layout</button>
+        <button class="filter-btn" data-filter="web">Web Dev</button>
       </div>
     </div>
     <div class="projects-grid" id="projectsGrid"></div>
@@ -1009,14 +1008,14 @@
     <div class="pricing-header reveal">
       <span class="section-label">Investment</span>
       <h2 class="section-title" id="pricing-heading">Transparent <span class="gradient-text">Pricing</span></h2>
-      <p class="section-description">Clear, project-based pricing. No surprises. Choose the package that fits your event.</p>
+      <p class="section-description">Clear, project-based pricing for website development. No surprises — pick the package that fits your needs.</p>
       <div class="pricing-toggle" role="group" aria-label="Billing period">
-        <span id="lblMonthly" class="active">Per Project</span>
-        <div class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" aria-label="Retainer pricing" tabindex="0">
+        <span id="lblMonthly" class="active">One-time</span>
+        <div class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" aria-label="With maintenance pricing" tabindex="0">
           <div class="toggle-thumb"></div>
         </div>
-        <span id="lblAnnual">Monthly Retainer</span>
-        <span class="save-badge">Save 20%</span>
+        <span id="lblAnnual">+ Maintenance</span>
+        <span class="save-badge">Recommended</span>
       </div>
     </div>
     <div class="pricing-grid" id="pricingGrid"></div>
@@ -1090,6 +1089,8 @@
               <option value="3d-layout">3D Event Layout (SketchUp)</option>
               <option value="3d-struct">3D Structure Design (SketchUp)</option>
               <option value="full">Full Event Design Package</option>
+              <option value="web-builder">Website Builder</option>
+              <option value="web-full">Full Web Development</option>
               <option value="other">Other</option>
             </select>
           </div>
@@ -1191,6 +1192,8 @@ const TOOLS = [
   { name:'Adobe InDesign',    abbr:'Id',  level:'Advanced'     },
   { name:'Adobe Acrobat',     abbr:'Ac',  level:'Advanced'     },
   { name:'CorelDRAW',         abbr:'CDR', level:'Intermediate' },
+  { name:'HTML / CSS',        abbr:'WEB', level:'Advanced'     },
+  { name:'JavaScript',        abbr:'JS',  level:'Advanced'     },
 ];
 
 const PROJECTS = [
@@ -1242,6 +1245,14 @@ const PROJECTS = [
     deliverables:['Headerboard Master Template','12 City-Specific Variants','3D Structure Model','Print-Ready Files (12 sets)','Sponsor Panel Swaps'],
     duration:'8 days', client:'Retail Brand / Agency',
   },
+  {
+    title:'Business Landing Page — Service Company',
+    desc:'Designed and developed a fully responsive landing page for a local service business. Includes hero section, services overview, testimonials, and a contact form — built from scratch without templates.',
+    tags:['HTML/CSS','JavaScript','Responsive'], cat:'web', bg:'pc-7', type:'Web Development',
+    tools:[{name:'HTML / CSS',abbr:'WEB'},{name:'JavaScript',abbr:'JS'}],
+    deliverables:['Responsive Landing Page','Contact Form','Services Section','Mobile-Optimized Layout','Cross-browser Tested','Deployed & Live'],
+    duration:'5 days', client:'Local Service Business',
+  },
 ];
 
 const TESTIMONIALS = [
@@ -1252,46 +1263,34 @@ const TESTIMONIALS = [
 
 const PLANS = [
   {
-    name:'Starter', desc:'For small events or single-deliverable requests.',
-    monthly:350,  retainer:280,  period:'/project', popular:false,
+    name:'Website Builder',
+    desc:'Great for personal brands, portfolios, and small businesses that need a clean professional website fast.',
+    monthly:800,  retainer:80,  period:'/project', popular:false,
     features:[
-      {t:'Up to 5 print deliverables', y:true},
-      {t:'KV-based adaptation',        y:true},
+      {t:'Up to 5 pages',              y:true},
+      {t:'Responsive design',          y:true},
+      {t:'Contact form',               y:true},
+      {t:'Basic SEO setup',            y:true},
       {t:'2 revision rounds',          y:true},
-      {t:'Print-ready files',          y:true},
-      {t:'3D visualization',           y:false},
-      {t:'Fabrication drawings',       y:false},
-      {t:'Priority turnaround',        y:false},
+      {t:'Custom backend / CMS',       y:false},
+      {t:'Custom animations',          y:false},
     ],
     cta:'Get Started', ctaCls:'cta-outline',
   },
   {
-    name:'Pro', desc:'Full event design production — 2D &amp; 3D.',
-    monthly:1200, retainer:960,  period:'/project', popular:true,
+    name:'Full Development',
+    desc:'For businesses that need a fully custom-built website with advanced features, animations, and functionality.',
+    monthly:2500, retainer:200, period:'/project', popular:true,
     features:[
-      {t:'Unlimited deliverables',     y:true},
-      {t:'Full KV adaptation suite',   y:true},
-      {t:'3D event layout (SketchUp)', y:true},
-      {t:'3D structure design',        y:true},
-      {t:'Fabrication-ready files',    y:true},
+      {t:'Unlimited pages',            y:true},
+      {t:'Custom UI/UX design',        y:true},
+      {t:'CMS integration',            y:true},
+      {t:'Advanced animations',        y:true},
+      {t:'Full SEO optimization',      y:true},
       {t:'3 revision rounds',          y:true},
-      {t:'Priority turnaround',        y:false},
+      {t:'Post-launch support',        y:true},
     ],
     cta:'Start a Project', ctaCls:'cta-gradient',
-  },
-  {
-    name:'Retainer', desc:'Ongoing partner for agencies &amp; production houses.',
-    monthly:2500, retainer:2000, period:'/month', popular:false,
-    features:[
-      {t:'Dedicated monthly hours',    y:true},
-      {t:'Unlimited revisions',        y:true},
-      {t:'2D &amp; 3D production',     y:true},
-      {t:'Same-day turnaround',        y:true},
-      {t:'Source files included',      y:true},
-      {t:'Priority scheduling',        y:true},
-      {t:'Dedicated Slack channel',    y:true},
-    ],
-    cta:"Let's Talk", ctaCls:'cta-outline',
   },
 ];
 
