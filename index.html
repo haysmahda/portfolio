@@ -1457,14 +1457,28 @@ document.addEventListener('click', e => {
 
 
 // ===== CONTACT FORM =====
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = this.querySelector('button[type="submit"]');
+  const originalHTML = btn.innerHTML;
   btn.textContent = 'Sending…'; btn.disabled = true;
-  setTimeout(() => {
-    this.style.display = 'none';
-    document.getElementById('formSuccess').classList.add('visible');
-  }, 1100);
+  try {
+    const res = await fetch('https://formspree.io/f/meenoolj', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      this.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('visible');
+    } else {
+      throw new Error();
+    }
+  } catch {
+    btn.innerHTML = originalHTML;
+    btn.disabled = false;
+    alert('Something went wrong. Please try again or email adhamsyah20@gmail.com directly.');
+  }
 });
 
 // ===== PHOTO FALLBACK =====
