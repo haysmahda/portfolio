@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "deploy": "git add index.html && git commit -m 'Update portfolio' && git push"
+  },
+  "dependencies": {
+    "motion": "^12.38.0"
+  }
+}

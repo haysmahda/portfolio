@@ -254,6 +254,13 @@
     .about-avatar-ring svg { width:60px; height:60px; fill:white; opacity:.9; }
     .about-img-name { font-family:'Playfair Display',serif; font-weight:700; font-size:1.1rem; }
     .about-img-role { font-size:.875rem; color:var(--text-muted); }
+    .about-photo {
+      width:100%; height:100%; object-fit:cover; object-position:center top;
+      display:block;
+    }
+    .about-photo-error { display:none; }
+    .about-photo.error { display:none; }
+    .about-photo.error ~ .about-image-placeholder { display:flex; }
 
     .about-image-glow {
       position:absolute; bottom:-30px; left:50%; transform:translateX(-50%);
@@ -569,6 +576,101 @@
     .footer-nav a:hover { color:var(--text-primary); }
     .footer-copy { font-size:.8rem; color:var(--text-muted); }
 
+    /* =================== MODALS =================== */
+    .modal-backdrop {
+      position:fixed; inset:0; z-index:100;
+      background:rgba(0,0,0,.78); backdrop-filter:blur(6px);
+      display:flex; align-items:center; justify-content:center;
+      padding:1.5rem; opacity:0; pointer-events:none;
+      transition:opacity .28s;
+    }
+    .modal-backdrop.open { opacity:1; pointer-events:all; }
+
+    .modal {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:1.5rem; width:100%; max-width:680px;
+      max-height:90vh; overflow-y:auto;
+      transform:translateY(22px) scale(.97);
+      transition:transform .28s;
+      position:relative;
+    }
+    .modal-backdrop.open .modal { transform:none; }
+
+    .modal-close {
+      position:absolute; top:1.25rem; right:1.25rem;
+      width:36px; height:36px; border-radius:50%;
+      background:var(--bg-secondary); border:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; transition:border-color .2s, background .2s; z-index:2;
+    }
+    .modal-close:hover { border-color:var(--gold); background:rgba(217,119,6,.1); }
+    .modal-close svg { width:16px; height:16px; stroke:var(--text-secondary); fill:none; stroke-width:2.5; stroke-linecap:round; }
+
+    /* --- View modal --- */
+    .view-modal-preview {
+      width:100%; aspect-ratio:16/9;
+      border-radius:1.25rem 1.25rem 0 0;
+      display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden;
+    }
+    .view-modal-preview svg { opacity:.16; }
+    .view-modal-preview-label {
+      position:absolute; bottom:1rem; left:1rem;
+      background:rgba(0,0,0,.5); backdrop-filter:blur(8px);
+      padding:.3rem .875rem; border-radius:2rem;
+      font-size:.7rem; font-weight:600; color:rgba(255,255,255,.85);
+      letter-spacing:.07em; text-transform:uppercase;
+    }
+    .view-modal-body { padding:1.75rem 2rem 2rem; }
+    .view-modal-title { font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:700; margin-bottom:.75rem; }
+    .view-modal-desc { font-size:.925rem; color:var(--text-secondary); line-height:1.75; }
+    .view-modal-tags { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1.1rem; }
+
+    /* --- Details modal --- */
+    .details-modal-header {
+      padding:2rem 2rem 1.5rem;
+      border-bottom:1px solid var(--border);
+    }
+    .details-modal-type {
+      font-size:.7rem; font-weight:600; letter-spacing:.15em;
+      text-transform:uppercase; color:var(--gold-light);
+      margin-bottom:.5rem; display:block;
+    }
+    .details-modal-title { font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:700; }
+    .details-modal-body { padding:1.75rem 2rem 2rem; display:flex; flex-direction:column; gap:1.5rem; }
+    .details-section-label {
+      font-size:.7rem; font-weight:700; letter-spacing:.13em;
+      text-transform:uppercase; color:var(--text-muted);
+      margin-bottom:.75rem; display:block;
+    }
+    .details-tools { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .details-tool-pill {
+      display:flex; align-items:center; gap:.5rem;
+      background:var(--bg-secondary); border:1px solid var(--border);
+      border-radius:2rem; padding:.35rem 1rem;
+      font-size:.825rem; color:var(--text-secondary);
+    }
+    .details-tool-abbr {
+      width:22px; height:22px; border-radius:.3rem;
+      background:rgba(217,119,6,.12); border:1px solid rgba(217,119,6,.2);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.58rem; font-weight:800; color:var(--gold-light);
+    }
+    .details-deliverables { display:flex; flex-direction:column; gap:.55rem; }
+    .details-deliverable {
+      display:flex; align-items:center; gap:.75rem;
+      font-size:.875rem; color:var(--text-secondary);
+    }
+    .details-deliverable-dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+    .details-meta { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .details-meta-item {
+      background:var(--bg-secondary); border:1px solid var(--border);
+      border-radius:.875rem; padding:1rem 1.25rem;
+    }
+    .details-meta-lbl { font-size:.7rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:.3rem; }
+    .details-meta-val { font-size:.9rem; font-weight:600; color:var(--text-primary); }
+    .details-desc { font-size:.925rem; color:var(--text-secondary); line-height:1.75; }
+
     /* =================== SCROLL TOP =================== */
     .scroll-top {
       position:fixed; bottom:2rem; right:2rem;
@@ -674,16 +776,13 @@
       </div>
 
       <div class="hero-socials" role="list" aria-label="Social links">
-        <a href="#" role="listitem" aria-label="Behance portfolio" title="Behance">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h6.5C9.43 6 11 7.57 11 9.5S9.43 13 7.5 13H1V6z"/><path d="M1 13h7.5C10.43 13 12 14.57 12 16.5S10.43 20 8.5 20H1v-7z"/><path d="M14 9h9"/><path d="M17 6a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z"/></svg>
-        </a>
-        <a href="#" role="listitem" aria-label="Instagram" title="Instagram">
+        <a href="https://instagram.com/adaaaamnn" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Instagram" title="Instagram">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </a>
-        <a href="#" role="listitem" aria-label="LinkedIn" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/adhamsyah/" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="LinkedIn" title="LinkedIn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
-        <a href="#" role="listitem" aria-label="Email" title="Email">
+        <a href="mailto:adhamsyah20@gmail.com" role="listitem" aria-label="Email" title="Email">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
       </div>
@@ -714,7 +813,10 @@
     <div class="about-grid">
       <div class="about-image-wrapper reveal-left">
         <div class="about-image">
-          <div class="about-image-placeholder">
+          <img src="photo.jpg" alt="Adhamsyah — Graphic Designer & 3D Visualizer"
+               class="about-photo" id="profilePhoto"
+               onerror="this.classList.add('error')">
+          <div class="about-image-placeholder" id="photoFallback">
             <div class="about-avatar-ring" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             </div>
@@ -1016,7 +1118,7 @@
 <footer role="contentinfo">
   <div class="container">
     <div class="footer-inner">
-      <a href="#hero" class="footer-logo" aria-label="Back to top">Your Name<span>.</span></a>
+      <a href="#hero" class="footer-logo" aria-label="Back to top">Adhamsyah<span>.</span></a>
       <ul class="footer-nav" role="list">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
@@ -1024,10 +1126,56 @@
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <p class="footer-copy">© <span id="yr"></span> Your Name. Graphic Designer &amp; 3D Visualizer.</p>
+      <p class="footer-copy">© <span id="yr"></span> Adhamsyah. Graphic Designer &amp; 3D Visualizer.</p>
     </div>
   </div>
 </footer>
+
+<!-- ====== VIEW MODAL ====== -->
+<div class="modal-backdrop" id="viewModalBdp" role="dialog" aria-modal="true" aria-labelledby="viewModalTitle">
+  <div class="modal" id="viewModal">
+    <button class="modal-close" id="viewModalClose" aria-label="Close preview">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="view-modal-preview" id="viewModalPreview">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span class="view-modal-preview-label" id="viewModalType"></span>
+    </div>
+    <div class="view-modal-body">
+      <h3 class="view-modal-title" id="viewModalTitle"></h3>
+      <p class="view-modal-desc" id="viewModalDesc"></p>
+      <div class="view-modal-tags" id="viewModalTags"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== DETAILS MODAL ====== -->
+<div class="modal-backdrop" id="detailsModalBdp" role="dialog" aria-modal="true" aria-labelledby="detailsModalTitle">
+  <div class="modal" id="detailsModal">
+    <button class="modal-close" id="detailsModalClose" aria-label="Close details">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="details-modal-header">
+      <span class="details-modal-type" id="detailsModalType"></span>
+      <h3 class="details-modal-title" id="detailsModalTitle"></h3>
+    </div>
+    <div class="details-modal-body">
+      <div>
+        <span class="details-section-label">Project Description</span>
+        <p class="details-desc" id="detailsModalDesc"></p>
+      </div>
+      <div>
+        <span class="details-section-label">Tools Used</span>
+        <div class="details-tools" id="detailsModalTools"></div>
+      </div>
+      <div>
+        <span class="details-section-label">Deliverables</span>
+        <div class="details-deliverables" id="detailsModalDeliverables"></div>
+      </div>
+      <div class="details-meta" id="detailsModalMeta"></div>
+    </div>
+  </div>
+</div>
 
 <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
   <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
@@ -1046,12 +1194,54 @@ const TOOLS = [
 ];
 
 const PROJECTS = [
-  { title:'Tech Summit 2024 — Full KV Suite',      desc:'Adapted a single Key Visual into 22 print deliverables: main backdrop, stage fascia, directional signage, standees, rollups, bunting, and table runners.',                tags:['Illustrator','KV Adaptation','Large Format'], cat:'2d',     bg:'pc-1', type:'2D Adaptation' },
-  { title:'Brand Booth — Auto Expo',               desc:'Designed a 10×6m exhibition booth in SketchUp from brand guidelines. Modeled display counters, header panels, LED column wraps, and floor layout for fabrication.',     tags:['SketchUp','Booth Design','3D Model'],          cat:'3d',     bg:'pc-2', type:'3D Structure'  },
-  { title:'Gala Dinner — Event Floor Layout',      desc:'Produced a complete 3D venue layout for a 500-pax gala dinner: seating clusters, stage, buffet stations, photo backdrop zones, and signage placements.',              tags:['SketchUp','Layout','Venue Planning'],          cat:'layout', bg:'pc-3', type:'Event Layout'  },
-  { title:'Arch Gateway — Product Launch',         desc:'Converted a 2D concept into a fabrication-ready 3D arch structure (8m tall) in SketchUp, including structural layers, lighting groove positions, and panel breakdown.',  tags:['SketchUp','Arch Structure','Fabrication'],    cat:'3d',     bg:'pc-4', type:'3D Structure'  },
-  { title:'Music Festival — Collateral Pack',      desc:'Full print collateral adaptation for a 3-day outdoor festival: main stage backdrop, sponsor boards, wayfinding system, VIP wristbands, and merchandise print files.',  tags:['Illustrator','Print Collateral','Branding'],  cat:'2d',     bg:'pc-5', type:'2D Adaptation' },
-  { title:'Headerboard Series — Retail Roadshow',  desc:'Designed and adapted a 12-city roadshow headerboard series, ensuring brand consistency while localizing specific panels for each city venue and sponsor mix.',          tags:['Illustrator','Headerboard','SketchUp'],       cat:'3d',     bg:'pc-6', type:'3D Structure'  },
+  {
+    title:'Tech Summit 2024 — Full KV Suite',
+    desc:'Adapted a single Key Visual into 22 print deliverables: main backdrop, stage fascia, directional signage, standees, rollups, bunting, and table runners.',
+    tags:['Illustrator','KV Adaptation','Large Format'], cat:'2d', bg:'pc-1', type:'2D Adaptation',
+    tools:[{name:'Adobe Illustrator',abbr:'Ai'},{name:'Adobe Acrobat',abbr:'Ac'},{name:'Adobe Photoshop',abbr:'Ps'}],
+    deliverables:['Main Backdrop (6×3m)','Stage Fascia','Directional Signage (8 variants)','Standees (4 designs)','Rollup Banners','Bunting Strip','Table Runners'],
+    duration:'4 days', client:'Corporate Event Agency',
+  },
+  {
+    title:'Brand Booth — Auto Expo',
+    desc:'Designed a 10×6m exhibition booth in SketchUp from brand guidelines. Modeled display counters, header panels, LED column wraps, and floor layout for fabrication.',
+    tags:['SketchUp','Booth Design','3D Model'], cat:'3d', bg:'pc-2', type:'3D Structure',
+    tools:[{name:'SketchUp',abbr:'SKP'},{name:'SketchUp Layout',abbr:'LYT'},{name:'Adobe Illustrator',abbr:'Ai'}],
+    deliverables:['3D Booth Model (10×6m)','Header Panel Design','Display Counter Model','LED Column Wraps','Floor Layout Drawing','Fabrication-Ready Export'],
+    duration:'5 days', client:'Automotive Brand',
+  },
+  {
+    title:'Gala Dinner — Event Floor Layout',
+    desc:'Produced a complete 3D venue layout for a 500-pax gala dinner: seating clusters, stage, buffet stations, photo backdrop zones, and signage placements.',
+    tags:['SketchUp','Layout','Venue Planning'], cat:'layout', bg:'pc-3', type:'Event Layout',
+    tools:[{name:'SketchUp',abbr:'SKP'},{name:'SketchUp Layout',abbr:'LYT'}],
+    deliverables:['Full 3D Venue Layout','Seating Plan (500 pax)','Stage Positioning','Buffet Station Layout','Photo Backdrop Zones','Signage Placement Map'],
+    duration:'3 days', client:'Event Production House',
+  },
+  {
+    title:'Arch Gateway — Product Launch',
+    desc:'Converted a 2D concept into a fabrication-ready 3D arch structure (8m tall) in SketchUp, including structural layers, lighting groove positions, and panel breakdown.',
+    tags:['SketchUp','Arch Structure','Fabrication'], cat:'3d', bg:'pc-4', type:'3D Structure',
+    tools:[{name:'SketchUp',abbr:'SKP'},{name:'SketchUp Layout',abbr:'LYT'},{name:'Adobe Illustrator',abbr:'Ai'}],
+    deliverables:['3D Arch Model (8m tall)','Structural Layer Breakdown','Lighting Groove Plan','Panel Dimension Sheet','Fabrication-Ready DWG'],
+    duration:'4 days', client:'Product Launch Agency',
+  },
+  {
+    title:'Music Festival — Collateral Pack',
+    desc:'Full print collateral adaptation for a 3-day outdoor festival: main stage backdrop, sponsor boards, wayfinding system, VIP wristbands, and merchandise print files.',
+    tags:['Illustrator','Print Collateral','Branding'], cat:'2d', bg:'pc-5', type:'2D Adaptation',
+    tools:[{name:'Adobe Illustrator',abbr:'Ai'},{name:'Adobe Photoshop',abbr:'Ps'},{name:'Adobe Acrobat',abbr:'Ac'}],
+    deliverables:['Main Stage Backdrop','Sponsor Boards (6 variants)','Wayfinding System (12 signs)','VIP Wristband Design','Merchandise Print Files','Digital Assets Pack'],
+    duration:'6 days', client:'Music Festival Organizer',
+  },
+  {
+    title:'Headerboard Series — Retail Roadshow',
+    desc:'Designed and adapted a 12-city roadshow headerboard series, ensuring brand consistency while localizing specific panels for each city venue and sponsor mix.',
+    tags:['Illustrator','Headerboard','SketchUp'], cat:'3d', bg:'pc-6', type:'3D Structure',
+    tools:[{name:'Adobe Illustrator',abbr:'Ai'},{name:'SketchUp',abbr:'SKP'},{name:'Adobe Acrobat',abbr:'Ac'}],
+    deliverables:['Headerboard Master Template','12 City-Specific Variants','3D Structure Model','Print-Ready Files (12 sets)','Sponsor Panel Swaps'],
+    duration:'8 days', client:'Retail Brand / Agency',
+  },
 ];
 
 const TESTIMONIALS = [
@@ -1119,10 +1309,11 @@ function renderTools() {
 }
 
 // ===== RENDER PROJECTS =====
+let currentProjects = [];
 function renderProjects(filter = 'all') {
   const grid = document.getElementById('projectsGrid');
-  const list = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === filter);
-  grid.innerHTML = list.map(p => `
+  currentProjects = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === filter);
+  grid.innerHTML = currentProjects.map((p, i) => `
     <article class="project-card reveal" tabindex="0" aria-label="Project: ${p.title}">
       <div class="project-image">
         <div class="project-image-bg ${p.bg}">
@@ -1130,11 +1321,11 @@ function renderProjects(filter = 'all') {
         </div>
         <div class="project-image-label" aria-hidden="true">${p.type}</div>
         <div class="project-overlay" aria-hidden="true">
-          <button class="proj-ov-btn btn-view" tabindex="-1">
+          <button class="proj-ov-btn btn-view" data-idx="${i}" tabindex="-1">
             <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             View
           </button>
-          <button class="proj-ov-btn btn-detail" tabindex="-1">
+          <button class="proj-ov-btn btn-detail" data-idx="${i}" tabindex="-1">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             Details
           </button>
@@ -1297,6 +1488,77 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     this.style.display = 'none';
     document.getElementById('formSuccess').classList.add('visible');
   }, 1100);
+});
+
+// ===== PHOTO FALLBACK =====
+const profilePhoto = document.getElementById('profilePhoto');
+const photoFallback = document.getElementById('photoFallback');
+if (profilePhoto) {
+  profilePhoto.addEventListener('error', () => {
+    profilePhoto.style.display = 'none';
+    photoFallback.style.display = 'flex';
+  });
+  profilePhoto.addEventListener('load', () => {
+    photoFallback.style.display = 'none';
+  });
+}
+
+// ===== MODAL LOGIC =====
+function openViewModal(p) {
+  const preview = document.getElementById('viewModalPreview');
+  preview.className = `view-modal-preview ${p.bg}`;
+  document.getElementById('viewModalType').textContent = p.type;
+  document.getElementById('viewModalTitle').textContent = p.title;
+  document.getElementById('viewModalDesc').textContent = p.desc;
+  document.getElementById('viewModalTags').innerHTML = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
+  document.getElementById('viewModalBdp').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function openDetailsModal(p) {
+  document.getElementById('detailsModalType').textContent = p.type;
+  document.getElementById('detailsModalTitle').textContent = p.title;
+  document.getElementById('detailsModalDesc').textContent = p.desc;
+  document.getElementById('detailsModalTools').innerHTML = p.tools.map(t => `
+    <div class="details-tool-pill">
+      <div class="details-tool-abbr">${t.abbr}</div>
+      ${t.name}
+    </div>`).join('');
+  document.getElementById('detailsModalDeliverables').innerHTML = p.deliverables.map(d => `
+    <div class="details-deliverable">
+      <div class="details-deliverable-dot"></div>
+      ${d}
+    </div>`).join('');
+  document.getElementById('detailsModalMeta').innerHTML = `
+    <div class="details-meta-item">
+      <div class="details-meta-lbl">Duration</div>
+      <div class="details-meta-val">${p.duration}</div>
+    </div>
+    <div class="details-meta-item">
+      <div class="details-meta-lbl">Client Type</div>
+      <div class="details-meta-val">${p.client}</div>
+    </div>`;
+  document.getElementById('detailsModalBdp').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModals() {
+  document.getElementById('viewModalBdp').classList.remove('open');
+  document.getElementById('detailsModalBdp').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('viewModalClose').addEventListener('click', closeModals);
+document.getElementById('detailsModalClose').addEventListener('click', closeModals);
+document.getElementById('viewModalBdp').addEventListener('click', e => { if (e.target === e.currentTarget) closeModals(); });
+document.getElementById('detailsModalBdp').addEventListener('click', e => { if (e.target === e.currentTarget) closeModals(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModals(); });
+
+document.addEventListener('click', e => {
+  const viewBtn = e.target.closest('.btn-view');
+  const detailBtn = e.target.closest('.btn-detail');
+  if (viewBtn) openViewModal(currentProjects[parseInt(viewBtn.dataset.idx)]);
+  if (detailBtn) openDetailsModal(currentProjects[parseInt(detailBtn.dataset.idx)]);
 });
 
 // ===== INIT =====
