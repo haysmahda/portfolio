@@ -1221,9 +1221,20 @@ const TOOLS = [
   { name:'CorelDRAW',         abbr:'CDR', level:'Intermediate' },
   { name:'HTML / CSS',        abbr:'WEB', level:'Advanced'     },
   { name:'JavaScript',        abbr:'JS',  level:'Advanced'     },
+  { name:'Next.js',           abbr:'NXT', level:'Intermediate' },
+  { name:'TypeScript',        abbr:'TS',  level:'Intermediate' },
 ];
 
 const PROJECTS = [
+  {
+    title:'Nusantara — Indonesian Tourism Landing Page',
+    desc:'A modern landing page for an Indonesian tourism agency built with Next.js and TypeScript. Designed to showcase destinations and packages — currently a landing page with full website and payment system development planned.',
+    tags:['Next.js','TypeScript','Responsive'], cat:'web', bg:'pc-7', type:'Web Development',
+    tools:[{name:'Next.js',abbr:'NXT'},{name:'TypeScript',abbr:'TS'},{name:'HTML / CSS',abbr:'WEB'}],
+    deliverables:['Responsive Landing Page','Destination Showcase','Tour Packages Section','Mobile-Optimized Layout','Deployed on Vercel'],
+    duration:'In Progress', client:'Personal Project',
+    link:'https://github.com/haysmahda/nusantara-travel',
+  },
   {
     title:'Tech Summit 2024 — Full KV Suite',
     desc:'Adapted a single Key Visual into 22 print deliverables: main backdrop, stage fascia, directional signage, standees, rollups, bunting, and table runners.',
@@ -1271,14 +1282,6 @@ const PROJECTS = [
     tools:[{name:'Adobe Illustrator',abbr:'Ai'},{name:'SketchUp',abbr:'SKP'},{name:'Adobe Acrobat',abbr:'Ac'}],
     deliverables:['Headerboard Master Template','12 City-Specific Variants','3D Structure Model','Print-Ready Files (12 sets)','Sponsor Panel Swaps'],
     duration:'8 days', client:'Retail Brand / Agency',
-  },
-  {
-    title:'Business Landing Page — Service Company',
-    desc:'Designed and developed a fully responsive landing page for a local service business. Includes hero section, services overview, testimonials, and a contact form — built from scratch without templates.',
-    tags:['HTML/CSS','JavaScript','Responsive'], cat:'web', bg:'pc-7', type:'Web Development',
-    tools:[{name:'HTML / CSS',abbr:'WEB'},{name:'JavaScript',abbr:'JS'}],
-    deliverables:['Responsive Landing Page','Contact Form','Services Section','Mobile-Optimized Layout','Cross-browser Tested','Deployed & Live'],
-    duration:'5 days', client:'Local Service Business',
   },
 ];
 
@@ -1536,7 +1539,11 @@ function openViewModal(p) {
   document.getElementById('viewModalType').textContent = p.type;
   document.getElementById('viewModalTitle').textContent = p.title;
   document.getElementById('viewModalDesc').textContent = p.desc;
-  document.getElementById('viewModalTags').innerHTML = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
+  document.getElementById('viewModalTags').innerHTML = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')
+    + (p.link ? `<a href="${p.link}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top:1.25rem;font-size:.85rem;padding:.6rem 1.25rem;text-decoration:none;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        View on GitHub
+      </a>` : '');
   document.getElementById('viewModalBdp').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
